@@ -1,3 +1,35 @@
 body {
     background: plum;
+    position: relative;
+}
+
+/* Home page styling */
+.carousel-inner {
+    height: 50vh;
+}
+.carousel-item img {
+    object-fit: fill;
+}
+
+/* Dialogue box styling */
+.hidden {
+    opacity: 0
+}
+
+.dialogueContainer {
+    position: absolute;
+    height: calc(100vh - 56px);
+    width: 100vw;
+    background: rgba(0,0,0,0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.dialogueBox {
+    height: 400px;
+    width: 200px;
+    background: white;
+    z-index: 101;
 }

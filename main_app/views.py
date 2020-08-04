@@ -3,5 +3,19 @@ from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+    context = {
+        'hidden': "hidden"
+    }
+    return render(request, 'home.html', context)
 
+def login(request):
+    context = {
+        'hidden': ""
+    }
+    return render(request, 'home.html', context)
+
+def signup(request):
+    context = {
+        'hidden': ""
+    }
+    return render(request, 'home.html', context)
