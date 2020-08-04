@@ -10,7 +10,7 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
-def login(request):
+def login_page(request):
     if request.method == 'POST':
         form = AuthenticationForm(request.POST)
         if form.is_valid():
@@ -26,14 +26,20 @@ def login(request):
         return render(request, 'home.html', context)
 
 def signup(request):
-    
-    form = UserCreationForm()
-    context = {
-        'hidden': "",
-        'form': form,
-        'formType': 'signup'
-    }
-    return render(request, 'home.html', context)
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return HttpResponse('post signup')
+    else:
+        form = UserCreationForm()
+        context = {
+            'hidden': "",
+            'form': form,
+            'formType': 'signup'
+        }
+        return render(request, 'home.html', context)
 
 def profile(request):
     return HttpResponse('Profile page')
