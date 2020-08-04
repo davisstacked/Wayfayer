@@ -9,12 +9,16 @@ Homepage
 <div class="dialogueContainer {{ hidden }}">
     <div class="dialogueBox">
         <!-- this is where we'll put the login/signup forms -->
-        {% if form  %}
-        <form action="" method="get">
-          {% csrf_token %}
-          {{ form.as_p}}
-          <button type="submit">Submit</button>
-        </form>
+        {% if form %}
+          {% if formType == 'login' %}
+            <form action="{% url 'login' %}" method="POST">
+          {% elif formType == 'signup' %}
+            <form action="{% url 'signup' %}" method="POST">
+          {% endif %}
+            {% csrf_token %}
+            {{ form.as_p}}
+            <button type="submit">Submit</button>
+          </form>
         {% endif %}
     </div>
 </div>
