@@ -4,6 +4,19 @@ profile
 {%endblock%}
 
 {%block main%}
+<div class="dialogueContainer {{ hidden }}">
+  <div class="dialogueBox">
+      <!-- this is where we'll put the login/signup forms -->
+      {% if user_form and profile_form %}
+      <form action="{% url 'edit_profile' %}" method="POST">
+        {% csrf_token %}
+        {{ user_form.as_p}}
+        {{ profile_form.as_p}}
+        <button type="submit">Submit</button>
+      </form>
+      {% endif %}
+  </div>
+</div>
  <div class="profile-content">
    <section class="profile">
     <img src="{{ profile.image }}" alt="post name">
@@ -19,7 +32,7 @@ profile
       <h6>Join Date</h6>
       <h4>{{profile.join_date}}</h4>
     </div>
-    <form action="" method="POST">
+    <form action="{% url 'edit_profile' %}" method="GET">
       <button type="submit">Update Profile</button>
     </form>
    </section>

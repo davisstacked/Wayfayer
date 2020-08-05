@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login
 from .models import * 
+from .forms import ProfileForm, UserForm
 
 # Create your views here.
 def home(request):
@@ -35,8 +36,20 @@ def signup(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            city = City.objects.all().first()
+            profile = Profile(user=user, city=city)
+            profile.save()
             login(request, user)
-            return render(request, 'profile.html')
+            cities = City.objects.all()
+            posts = Post.objects.filter(user=request.user.id)
+            context = {
+                'cities': cities,
+                'user': user,
+                'posts': posts,
+                'profile': profile,
+                'hidden': "hidden"
+            }
+            return render(request, 'profile.html', context)
         return redirect('signup')
     else:
         form = UserCreationForm()
@@ -52,12 +65,30 @@ def profile(request):
     cities = City.objects.all()
     user = User.objects.get(id=request.user.id)
     posts = Post.objects.filter(user=request.user.id)
-    profile = Profile.objects.get(user=request.user.id)
+    profile = Profile.objects.get(user=request.user)
     context = {
         'cities': cities,
         'user': user,
         'posts': posts,
-        'profile': profile
+        'profile': profile,
+        'hidden': "hidden"
     }
     return render(request, 'profile.html', context)
 
+def edit_profile(request):
+    cities = City.objects.all()
+    user = User.objects.filter(id=request.user.id)
+    posts = Post.objects.filter(user=request.user.id)
+    profile = Profile.objects.get(user=request.user)
+    form1 = UserForm()
+    form2 = ProfileForm()
+    context = {
+        'cities': cities,
+        'user': user,
+        'posts': posts,
+        'profile': profile,
+        'user_form': form1,
+        'profile_form': form2,
+        'hidden': ""
+    }
+    return render(request, 'profile.html', context)
