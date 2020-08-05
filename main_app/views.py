@@ -12,11 +12,15 @@ def home(request):
 
 def login_page(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request.POST)
+        form = AuthenticationForm(data=request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.get_user()
             login(request, user)
+            return render(request, 'profile.html')
+        return redirect('login_page')
+
     else:
+        print('Else block')
         form = AuthenticationForm()
         context = {
             'hidden': "",

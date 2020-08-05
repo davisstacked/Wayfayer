@@ -11,7 +11,7 @@ Homepage
         <!-- this is where we'll put the login/signup forms -->
         {% if form %}
           {% if formType == 'login' %}
-            <form action="{% url 'login' %}" method="POST">
+            <form action="{% url 'login_page' %}" method="POST">
           {% elif formType == 'signup' %}
             <form action="{% url 'signup' %}" method="POST">
           {% endif %}
