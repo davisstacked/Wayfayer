@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login
+from .models import * 
 
 # Create your views here.
 def home(request):
@@ -47,5 +48,16 @@ def signup(request):
         return render(request, 'home.html', context)
 
 def profile(request):
-    return render(request, 'profile.html')
+    print(request.user.id)
+    cities = City.objects.all()
+    user = User.objects.get(id=request.user.id)
+    posts = Post.objects.filter(user=request.user.id)
+    profile = Profile.objects.get(user=request.user.id)
+    context = {
+        'cities': cities,
+        'user': user,
+        'posts': posts,
+        'profile': profile
+    }
+    return render(request, 'profile.html', context)
 
