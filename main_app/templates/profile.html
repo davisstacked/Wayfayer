@@ -7,10 +7,9 @@ profile
 <div class="dialogueContainer {{ hidden }}">
   <div class="dialogueBox">
       <!-- this is where we'll put the login/signup forms -->
-      {% if user_form and profile_form %}
+      {% if profile_form %}
       <form action="{% url 'edit_profile' %}" method="POST">
         {% csrf_token %}
-        {{ user_form.as_p}}
         {{ profile_form.as_p}}
         <button type="submit">Submit</button>
       </form>
@@ -21,8 +20,8 @@ profile
    <section class="profile">
     <img src="{{ profile.image }}" alt="post name">
     <div class="username">
-      <h6>Username</h6>
-      <h2>{{user.username}}</h2>
+      <h6>Name</h6>
+      <h2>{{ profile.display_name }}</h2>
     </div> 
     <div class="current-city">
       <h6>Current City</h6>
@@ -33,7 +32,7 @@ profile
       <h4>{{profile.join_date}}</h4>
     </div>
     <form action="{% url 'edit_profile' %}" method="GET">
-      <button type="submit">Update Profile</button>
+      <button type="submit">Edit Profile</button>
     </form>
    </section>
    <section class="cities">
