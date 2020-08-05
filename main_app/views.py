@@ -35,7 +35,8 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return HttpResponse('post signup')
+            return render(request, 'profile.html')
+        return redirect('signup')
     else:
         form = UserCreationForm()
         context = {
@@ -46,4 +47,5 @@ def signup(request):
         return render(request, 'home.html', context)
 
 def profile(request):
-    return HttpResponse('Profile page')
+    return render(request, 'profile.html')
+
