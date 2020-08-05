@@ -110,9 +110,11 @@ def profile_post(request, post_id):
     user = User.objects.get(id=request.user.id)
     posts = Post.objects.filter(user=request.user.id)
     post = Post.objects.get(id=post_id)
+    city = City.objects.get(id=post.city.id)
     profile = Profile.objects.get(user=request.user)
     context = {
         'cities': cities,
+        'city': city,
         'user': user,
         'posts': posts,
         'post': post,
