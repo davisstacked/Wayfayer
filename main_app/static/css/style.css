@@ -12,6 +12,13 @@ body {
 }
 
 /* Dialogue box styling */
+<<<<<<< HEAD
+=======
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+>>>>>>> f24a85b46dd0625254f5f5f342c9472a3604a717
 
 .dialogueContainer {
     position: absolute;
@@ -23,11 +30,14 @@ body {
     align-items: center;
     z-index: 100;
     pointer-events: auto;
+<<<<<<< HEAD
 }
 
 .hidden {
     opacity: 0;
     pointer-events: none;
+=======
+>>>>>>> f24a85b46dd0625254f5f5f342c9472a3604a717
 }
 
 .dialogueBox {
