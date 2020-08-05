@@ -68,6 +68,12 @@ body {
     margin: 10px;
 }
 
+.profile-content {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+}
+
 .profile {
     height: 100px;
     width: 98vw;
@@ -81,4 +87,28 @@ body {
 .profile img {
     height: 90px;
     width: 90px;
+}
+
+.cities {
+    width: 30%;
+    background-color: blue;
+}
+
+.citybox {
+    width: 95%;
+    height: 100px;
+    background-color: orange;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.citybox img {
+    height: 90px;
+}
+
+.posts {
+    width: 65%;
+    background-color: red;
 }

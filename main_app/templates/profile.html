@@ -4,6 +4,7 @@ profile
 {%endblock%}
 
 {%block main%}
+ <div class="profile-content">
    <section class="profile">
     <img src="{{ profile.image }}" alt="post name"> 
     <h2>{{user.username}}</h2>
@@ -12,7 +13,7 @@ profile
    </section>
    <section class="cities">
     {% for city in cities %}
-        <div>
+        <div class="citybox">
            <img src="{{ city.image }}" alt="city name"> 
             <h2>{{ city.name }}</h2>
         </div>
@@ -27,5 +28,6 @@ profile
     </div>
     {% endfor %} 
    </section>
+ </div>
 {%endblock%}
 
