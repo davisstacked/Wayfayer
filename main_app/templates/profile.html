@@ -6,7 +6,28 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Profile page</h1>
-    <h3>user is authenticated: {{user.is_authenticated}}</h3>
+   <section class="profile">
+    <img src="" alt="">
+    <h2>{{user.username}}</h2>
+    <h4>Current City</h4>
+    <h4>Join Date</h4>
+   </section>
+   <section class="cities">
+    {% for city in cities %}
+        <div>
+           <img src="{{ city.image }}" alt="city name"> 
+            <h2>{{ city.name }}</h2>
+        </div>
+        {% endfor %} 
+   </section>
+   <section class="posts">
+    {% for post in posts %}
+    <div>
+       <img src="{{ profile.image }}" alt="post name"> 
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.blurb }}</p>
+    </div>
+    {% endfor %} 
+   </section>
 </body>
 </html>
