@@ -112,3 +112,17 @@ body {
     width: 65%;
     background-color: red;
 }
+
+.postbox {
+    height: 200px;
+    width: 95%;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.postbox img {
+    height: 180px;
+}

@@ -12,6 +12,7 @@ profile
     <h4>{{profile.join_date}}</h4>
    </section>
    <section class="cities">
+    <h2>Cities</h2>
     {% for city in cities %}
         <div class="citybox">
            <img src="{{ city.image }}" alt="city name"> 
@@ -20,11 +21,14 @@ profile
         {% endfor %} 
    </section>
    <section class="posts">
+    <h2>Posts</h2>
     {% for post in posts %}
-    <div>
+    <div class="postbox">
        <img src="{{ profile.image }}" alt="post name"> 
-        <h2>{{ post.title }}</h2>
-        <p>{{ post.blurb }}</p>
+        <div class="posttext">
+         <h2>{{ post.title }}</h2>
+         <p>{{ post.blurb }}</p>
+        </div> 
     </div>
     {% endfor %} 
    </section>
