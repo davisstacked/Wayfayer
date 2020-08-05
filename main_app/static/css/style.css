@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     background: plum;
     position: relative;
@@ -62,4 +66,19 @@ body {
 .topic {
     width: 200px;
     margin: 10px;
+}
+
+.profile {
+    height: 100px;
+    width: 98vw;
+    background-color: plum;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px 0px;
+}
+
+.profile img {
+    height: 90px;
+    width: 90px;
 }

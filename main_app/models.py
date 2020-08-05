@@ -6,6 +6,9 @@ class City(models.Model):
     country = models.CharField(max_length=150)
     image = models.URLField(max_length=350)
 
+    def __str__(self):
+        return self.name
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

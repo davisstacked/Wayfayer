@@ -5,10 +5,10 @@ profile
 
 {%block main%}
    <section class="profile">
-    <img src="" alt="">
+    <img src="{{ profile.image }}" alt="post name"> 
     <h2>{{user.username}}</h2>
-    <h4>Current City</h4>
-    <h4>Join Date</h4>
+    <h4>{{profile.city}}</h4>
+    <h4>{{profile.join_date}}</h4>
    </section>
    <section class="cities">
     {% for city in cities %}
