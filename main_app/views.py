@@ -17,8 +17,19 @@ def login_page(request):
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
+            profile = Profile.objects.get(user=user)
             login(request, user)
-            return render(request, 'profile.html')
+            cities = City.objects.all()
+            posts = Post.objects.filter(user=request.user.id)
+            context = {
+                'cities': cities,
+                'user': user,
+                'posts': posts,
+                'profile': profile,
+                'hidden': "hidden"
+            }
+            return render(request, 'profile.html', context)
+        print('form is valid? ' + str(form.is_valid()))    
         return redirect('login_page')
 
     else:
