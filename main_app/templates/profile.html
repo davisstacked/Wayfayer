@@ -14,6 +14,12 @@ profile
         <button type="submit">Submit</button>
       </form>
       {% endif %}
+      {% if post %}
+          <h2>{{ post.title }}</h2>
+          <h3>{{ profile.display_name }} </h3>
+          <p>{{ post.blurb }}</p>
+      {% endif %}
+      
   </div>
 </div>
  <div class="profile-content">
@@ -47,13 +53,15 @@ profile
    <section class="posts">
     <h2>Posts</h2>
     {% for post in posts %}
-    <div class="postbox">
-       <img src="{{ profile.image }}" alt="post name"> 
-        <div class="posttext">
-         <h2>{{ post.title }}</h2>
-         <p>{{ post.blurb }}</p>
-        </div> 
-    </div>
+    <a href="{% url 'profile_post' post.id %}">
+      <div class="postbox">
+        <img src="{{ profile.image }}" alt="post name"> 
+          <div class="posttext">
+          <h2>{{ post.title }}</h2>
+          <p>{{ post.blurb }}</p>
+          </div> 
+      </div>
+    </a>
     {% endfor %} 
    </section>
  </div>

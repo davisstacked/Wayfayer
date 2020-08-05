@@ -61,7 +61,6 @@ def signup(request):
         return render(request, 'home.html', context)
 
 def profile(request):
-    print(request.user.id)
     cities = City.objects.all()
     user = User.objects.get(id=request.user.id)
     posts = Post.objects.filter(user=request.user.id)
@@ -105,3 +104,19 @@ def edit_profile(request):
             'hidden': ""
         }
         return render(request, 'profile.html', context)
+
+def profile_post(request, post_id):
+    cities = City.objects.all()
+    user = User.objects.get(id=request.user.id)
+    posts = Post.objects.filter(user=request.user.id)
+    post = Post.objects.get(id=post_id)
+    profile = Profile.objects.get(user=request.user)
+    context = {
+        'cities': cities,
+        'user': user,
+        'posts': posts,
+        'post': post,
+        'profile': profile,
+        'hidden': ""
+    }
+    return render(request, 'profile.html', context)

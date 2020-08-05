@@ -6,6 +6,12 @@ body {
     position: relative;
 }
 
+.helptext {
+    height: 0 ;
+    width: 0;
+    display: none;
+}
+
 /* Home page styling */
 .carousel-inner {
     height: 50vh;
