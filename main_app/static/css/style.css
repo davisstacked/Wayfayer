@@ -3,7 +3,6 @@
 }
 
 body {
-    background: plum;
     position: relative;
 }
 
@@ -71,27 +70,35 @@ body {
 .profile-content {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     width: 100vw;
 }
 
 .profile {
     height: 100px;
-    width: 98vw;
+    width: 100vw;
     background-color: plum;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin: 10px 0px;
+    margin: 10px;
 }
 
-.profile img {
-    height: 90px;
-    width: 90px;
+.profile img,
+.citybox img,
+.postbox img {
+    height: 90%;
+}
+
+.cities,
+.posts {
+    margin-top: 20px;
+    padding: 10px;
 }
 
 .cities {
     width: 30%;
-    background-color: blue;
+    margin-left: 10px;
 }
 
 .citybox {
@@ -102,27 +109,25 @@ body {
     display: flex;
     align-items: center;
     padding: 10px;
+    border: 2px solid grey;
+    margin: 15px 0px;
 }
-
-.citybox img {
-    height: 90px;
+.citybox h2,
+.posttext {
+    margin-left: 10px;
 }
-
 .posts {
     width: 65%;
-    background-color: red;
+    margin-right: 10px;
 }
 
 .postbox {
-    height: 200px;
+    height: 150px;
     width: 95%;
     background-color: white;
     border-radius: 20px;
     display: flex;
     align-items: center;
     padding: 10px;
-}
-
-.postbox img {
-    height: 180px;
+    border: 2px solid grey;
 }
