@@ -39,10 +39,35 @@ body {
 }
 
 .dialogueBox {
-    height: 400px;
-    width: 200px;
+    min-height: 400px;
+    min-width: 200px;
     background: white;
     z-index: 101;
+    border: solid grey 2px;
+    border-radius: 20px;
+    position: relative;
+}
+
+.post-show {
+    min-width: 300px;
+    padding: 10px;
+}
+
+.post-show h2 {
+    margin: 0;
+    text-align: center;
+}
+
+.post-show h3 {
+    color: grey;
+    font-size: 1.2em;
+    margin: 0;
+    text-align: center;
+}
+.post-show h5 {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
 
 .hidden {
