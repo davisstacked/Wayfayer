@@ -6,10 +6,22 @@ profile
 {%block main%}
  <div class="profile-content">
    <section class="profile">
-    <img src="{{ profile.image }}" alt="post name"> 
-    <h2>{{user.username}}</h2>
-    <h4>{{profile.city}}</h4>
-    <h4>{{profile.join_date}}</h4>
+    <img src="{{ profile.image }}" alt="post name">
+    <div class="username">
+      <h6>Username</h6>
+      <h2>{{user.username}}</h2>
+    </div> 
+    <div class="current-city">
+      <h6>Current City</h6>
+      <h4>{{profile.city}}</h4>
+    </div>
+    <div class="join-date">
+      <h6>Join Date</h6>
+      <h4>{{profile.join_date}}</h4>
+    </div>
+    <form action="" method="POST">
+      <button type="submit">Update Profile</button>
+    </form>
    </section>
    <section class="cities">
     <h2>Cities</h2>
