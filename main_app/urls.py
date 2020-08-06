@@ -10,7 +10,6 @@ urlpatterns = [
     path('accounts/profile/', views.profile, name='profile'),
     path('accounts/profile/edit/', views.edit_profile, name='edit_profile'),
     path('accounts/profile/<int:post_id>', views.profile_post, name='profile_post'),
-    path('test/', views.test, name="test")
 ]
 
 if settings.DEBUG:
