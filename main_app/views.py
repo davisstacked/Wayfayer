@@ -227,19 +227,6 @@ def editpost(request, city_id, post_id):
     return render(request, 'show_city.html', context)
 
 def deletepost(request, city_id, post_id):
-    cities = City.objects.all()
-    chosen_city = City.objects.get(id=city_id)
-    posts = Post.objects.filter(city=city_id).select_related('user__profile').order_by('-post_date').order_by('title')
     post = Post.objects.get(id=post_id)
-    context = {
-            'cities': cities,
-            'chosen_city': chosen_city,
-            'posts': posts,
-            'post': post
-    }
-    if request.method == 'POST':
-        pass
-    else:
-        context['hidden'] = ""
-        context['formType'] = 'delete'
-    return render(request, 'show_city.html', context)
+    post.delete()
+    return redirect('show_city', city_id=city_id)
