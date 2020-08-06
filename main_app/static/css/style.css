@@ -125,7 +125,7 @@ body {
 }
 
 .profile {
-    height: 100px;
+    height: 150px;
     width: 100vw;
     background-color: plum;
     display: flex;
@@ -134,13 +134,28 @@ body {
     margin: 10px;
 }
 
+.image-display {
+    width: 90px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.image-display form label {
+    display: none;
+}
+.profile-img {
+    height: 120px;
+    width: 120px;
+    margin: 10px;
+}
+
+
 h6 {
     margin: 0;
     padding: 0;
     font-size: 9px;
 }
 
-.profile img,
 .citybox img,
 .postbox img {
     height: 90%;

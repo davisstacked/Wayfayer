@@ -120,3 +120,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGOUT_REDIRECT_URL = '/'
+
+# Media detail (from https://www.geeksforgeeks.org/python-uploading-images-in-django/)
+import os
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

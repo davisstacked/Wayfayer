@@ -10,7 +10,7 @@ profile
       <!-- this is where we'll put the login/signup forms -->
       <span class="close-box"><i class="far fa-times-circle fa-2x"></i></span>
       {% if profile_form %}
-      <form action="{% url 'edit_profile' %}" method="POST">
+      <form action="{% url 'edit_profile' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ profile_form.as_p}}
         <button type="submit">Submit</button>
@@ -30,7 +30,9 @@ profile
 </div>
  <div class="profile-content">
    <section class="profile">
-    <img src="{{ profile.image }}" alt="post name">
+    <div class="image-display">
+      <img class="profile-img" src="{{ profile.image.url }}" alt="post name">
+    </div>
     <div class="username">
       <h6>Name</h6>
       <h2>{{ profile.display_name }}</h2>
@@ -61,7 +63,7 @@ profile
     {% for post in posts %}
     <a href="{% url 'profile_post' post.id %}">
       <div class="postbox">
-        <img src="{{ profile.image }}" alt="post name"> 
+        <img src="{{ profile.image.url }}" alt="post name"> 
           <div class="posttext">
           <h2>{{ post.title }}</h2>
           <p>{{ post.blurb|truncatechars:200 }}</p>
