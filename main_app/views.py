@@ -141,3 +141,18 @@ def profile_post(request, post_id):
         'hidden': ""
     }
     return render(request, 'profile.html', context)
+
+def show_city(request, city_id):
+    print('hello, world!')
+    cities = City.objects.all()
+    city = City.objects.get(id=city_id)
+    posts = Post.objects.filter(city=city_id).order_by('-post_date')
+    context = {
+        'cities': cities,
+        'city': city,
+        'posts': posts,
+        'hidden': "hidden"
+    }
+    return render(request, 'show_city.html', context)
+
+

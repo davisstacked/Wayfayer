@@ -1,0 +1,50 @@
+{%extends 'base.html'%}
+
+{%block title%}
+City View 
+{%endblock%}
+
+{%block main%}
+<div class="dialogueContainer {{ hidden }}">
+  <div class="dialogueBox">
+      <!-- this is where we'll put the login/signup forms -->
+      <span class="close-box"><i class="far fa-times-circle fa-2x"></i></span>
+      {% if post %}
+        <div class="post-show">
+          <h2>{{ post.title }}</h2>
+          <h3>in {{ city.name }}</h3>
+          <hr>
+          <p>{{ post.blurb }}</p>
+          <h5>by {{ profile.display_name }} </h5>
+        </div>
+      {% endif %}
+      
+  </div>
+</div>
+ <div class="profile-content">
+   <section class="cities">
+    <h2>City</h2>
+    {% for city in cities %}
+        <div class="citybox">
+           <img src="{{ city.image }}" alt="city name"> 
+            <h2>{{ city.name }}</h2>
+        </div>
+        {% endfor %} 
+   </section>
+   <section class="posts">
+    <h2>Posts</h2>
+    {% for post in posts %}
+    <a href="{% url 'profile_post' post.id %}">
+      <div class="postbox">
+        <img src="{{ profile.image.url }}" alt="post name"> 
+          <div class="posttext">
+          <h2>{{ post.title }}</h2>
+          <p>{{ post.blurb|truncatechars:200 }}</p>
+          </div> 
+      </div>
+    </a>
+    {% endfor %} 
+   </section>
+ </div>
+{%endblock%}
+
