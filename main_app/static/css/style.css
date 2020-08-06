@@ -39,8 +39,9 @@ body {
 }
 
 .dialogueBox {
-    min-height: 400px;
+    min-height: 200px;
     min-width: 200px;
+    max-width: 500px;
     background: white;
     z-index: 101;
     border: solid grey 2px;
@@ -54,17 +55,21 @@ body {
 .close-box:hover {
     color: red;
 }
-
 .fa-times-circle {
     position: absolute;
     top: 10px;
     right: 10px;
 }
 
+.form-content {
+    margin: 40px 10px;
+    padding: 10px;
+}
+
 .post-show {
     min-width: 300px;
     padding: 10px;
-    margin-top: 15px;
+    margin: 15px 0;
 }
 
 .post-show h2 {
@@ -75,8 +80,8 @@ body {
 .post-show h3 {
     color: grey;
     font-size: 1.2em;
-    margin: 0;
     text-align: center;
+    margin: 0;
 }
 .post-show h5 {
     position: absolute;

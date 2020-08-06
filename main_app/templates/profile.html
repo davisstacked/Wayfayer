@@ -1,9 +1,4 @@
 {%extends 'base.html'%}
-{% load static %}
-
-{%block JS%}
-<script defer src="{% static 'js/app.js' %}"></script>
-{%endblock%}
 
 {%block title%}
 profile
@@ -69,7 +64,7 @@ profile
         <img src="{{ profile.image }}" alt="post name"> 
           <div class="posttext">
           <h2>{{ post.title }}</h2>
-          <p>{{ post.blurb }}</p>
+          <p>{{ post.blurb|truncatechars:200 }}</p>
           </div> 
       </div>
     </a>

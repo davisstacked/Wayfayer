@@ -9,6 +9,8 @@ Homepage
 <div class="dialogueContainer {{ hidden }}">
     <div class="dialogueBox">
         <!-- this is where we'll put the login/signup forms -->
+      <span class="close-box"><i class="far fa-times-circle fa-2x"></i></span>
+      <div class="form-content">
         {% if form %}
           {% if formType == 'login' %}
             <form action="{% url 'login_page' %}" method="POST">
@@ -20,6 +22,7 @@ Homepage
             <button type="submit">Submit</button>
           </form>
         {% endif %}
+      </div>
     </div>
 </div>
 
