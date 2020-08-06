@@ -3,8 +3,13 @@
 }
 
 body {
-    background: plum;
     position: relative;
+}
+
+.helptext {
+    height: 0 ;
+    width: 0;
+    display: none;
 }
 
 /* Home page styling */
@@ -34,10 +39,54 @@ body {
 }
 
 .dialogueBox {
-    height: 400px;
-    width: 200px;
+    min-height: 200px;
+    min-width: 200px;
+    max-width: 500px;
     background: white;
     z-index: 101;
+    border: solid grey 2px;
+    border-radius: 20px;
+    position: relative;
+}
+
+.close-box {
+    cursor: pointer;
+}
+.close-box:hover {
+    color: red;
+}
+.fa-times-circle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.form-content {
+    margin: 40px 10px;
+    padding: 10px;
+}
+
+.post-show {
+    min-width: 300px;
+    padding: 10px;
+    margin: 15px 0;
+}
+
+.post-show h2 {
+    margin: 0;
+    text-align: center;
+}
+
+.post-show h3 {
+    color: grey;
+    font-size: 1.2em;
+    text-align: center;
+    margin: 0;
+}
+.post-show h5 {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
 
 .hidden {
@@ -71,27 +120,57 @@ body {
 .profile-content {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     width: 100vw;
 }
 
 .profile {
-    height: 100px;
-    width: 98vw;
+    height: 150px;
+    width: 100vw;
     background-color: plum;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin: 10px 0px;
+    margin: 10px;
 }
 
-.profile img {
-    height: 90px;
+.image-display {
     width: 90px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.image-display form label {
+    display: none;
+}
+.profile-img {
+    height: 120px;
+    width: 120px;
+    margin: 10px;
+}
+
+
+h6 {
+    margin: 0;
+    padding: 0;
+    font-size: 9px;
+}
+
+.citybox img,
+.postbox img {
+    height: 90%;
+}
+
+.cities,
+.posts {
+    margin-top: 20px;
+    padding: 10px;
 }
 
 .cities {
     width: 30%;
-    background-color: blue;
+    min-width: 330px;
+    margin-left: 10px;
 }
 
 .citybox {
@@ -102,27 +181,25 @@ body {
     display: flex;
     align-items: center;
     padding: 10px;
+    border: 2px solid grey;
+    margin: 15px 0px;
 }
-
-.citybox img {
-    height: 90px;
+.citybox h2,
+.posttext {
+    margin-left: 10px;
 }
-
 .posts {
     width: 65%;
-    background-color: red;
+    margin-right: 10px;
 }
 
 .postbox {
-    height: 200px;
+    height: 150px;
     width: 95%;
     background-color: white;
     border-radius: 20px;
     display: flex;
     align-items: center;
     padding: 10px;
-}
-
-.postbox img {
-    height: 180px;
+    border: 2px solid grey;
 }
