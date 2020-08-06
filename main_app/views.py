@@ -144,7 +144,7 @@ def profile_post(request, post_id):
 def show_city(request, city_id):
     cities = City.objects.all()
     chosen_city = City.objects.get(id=city_id)
-    posts = Post.objects.filter(city=city_id).order_by('-post_date')
+    posts = Post.objects.filter(city=city_id).select_related('user__profile').order_by('-post_date')
     context = {
         'cities': cities,
         'chosen_city': chosen_city,

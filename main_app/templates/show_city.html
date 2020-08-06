@@ -57,7 +57,7 @@ City View
         <a href="{% url 'deletepost' chosen_city.id post.id %}">
           <button>Delete</button>
         </a>
-        <img src="{{ profile.image.url }}" alt="post name"> 
+        <img src="{{ post.user.profile.image.url }}" alt="post name"> 
           <div class="posttext">
           <h2>{{ post.title }}</h2>
           <p>{{ post.blurb|truncatechars:200 }}</p>
