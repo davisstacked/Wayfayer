@@ -94,7 +94,6 @@ def profile(request):
         return render(request, 'profile.html', context)
 
 def edit_profile(request):
-    user = User.objects.filter(id=request.user.id)
     profile = Profile.objects.get(user=request.user)
     cities = City.objects.all()
     posts = Post.objects.filter(user=request.user.id)
@@ -104,7 +103,7 @@ def edit_profile(request):
             profile_form.save()
             context = {
                 'cities': cities,
-                'user': user,
+                'user': request.user,
                 'posts': posts,
                 'profile': profile,
                 'hidden': "hidden"
@@ -116,7 +115,7 @@ def edit_profile(request):
         profile_form = ProfileForm(instance=profile)
         context = {
             'cities': cities,
-            'user': user,
+            'user': request.user,
             'posts': posts,
             'profile': profile,
             'profile_form': profile_form,
