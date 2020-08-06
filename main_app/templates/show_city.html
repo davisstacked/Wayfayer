@@ -38,6 +38,7 @@ City View
         {% endfor %} 
    </section>
    <section class="posts">
+    <a class="add-post" href="{% url 'newpost' chosen_city.id %}"><i class="fas fa-plus-circle fa-2x"></i></a>
     <h2>Posts</h2>
     {% for post in posts %}
     <a href="{% url 'city_post' chosen_city.id post.id %}">

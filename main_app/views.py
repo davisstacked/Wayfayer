@@ -72,14 +72,14 @@ def signup(request):
         return render(request, 'home.html', context)
 
 def profile(request):
-    if request.method == "POST":
-        profile = Profile.objects.get(user=request.user)
-        form = ImageForm(request.POST, request.FILES, instance=profile)
-        if form.is_valid():
-            print(request.FILES)
-            form.save()
-            return redirect('profile')
-    else:
+    # if request.method == "POST":
+    #     profile = Profile.objects.get(user=request.user)
+    #     form = ImageForm(request.POST, request.FILES, instance=profile)
+    #     if form.is_valid():
+    #         print(request.FILES)
+    #         form.save()
+    #         return redirect('profile')
+    # else:
         cities = City.objects.all()
         user = User.objects.get(id=request.user.id)
         posts = Post.objects.filter(user=request.user.id)
@@ -175,19 +175,26 @@ def city_post(request, city_id, post_id):
     return render(request, 'show_city.html', context)
 
 def newpost(request, city_id):
-    if request.method == 'POST':
-        pass
-    else:
-        cities = City.objects.all()
-        chosen_city = City.objects.get(id=city_id)
-        posts = Post.objects.filter(city=city_id).order_by('-post_date')
-        post_form = PostForm()
-        context = {
+    cities = City.objects.all()
+    chosen_city = City.objects.get(id=city_id)
+    posts = Post.objects.filter(city=city_id).order_by('-post_date').order_by('title')
+    context = {
             'cities': cities,
             'chosen_city': chosen_city,
             'posts': posts,
-            'post_form': post_form,
-            'hidden': ""
-        }
+    }
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid:
+            post = form.save(commit=False)
+            post.user = request.user
+            post.city = chosen_city
+            post.save()
+            context['hidden'] = "hidden"
+            # return redirect('show_city.html', context)
+    else:
+        post_form = PostForm()
+        context['post_form'] = post_form
+        context['hidden'] = ""
     return render(request, 'show_city.html', context)
 
