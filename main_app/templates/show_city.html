@@ -18,7 +18,13 @@ City View
           <h5>by {{ profile.display_name }} </h5>
         </div>
       {% endif %}
-      
+      {% if post_form %}
+      <form action="{% url 'newpost' chosen_city.id %}" method="POST">
+          {% csrf_token %}
+          {{ post_form.as_p}}
+          <button type="submit">Submit</button>
+        </form>
+      {% endif %}
   </div>
 </div>
  <div class="profile-content">

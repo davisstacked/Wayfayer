@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login
 from .models import * 
-from .forms import ProfileForm
+from .forms import ProfileForm, PostForm
 
 # Create your views here.
 def home(request):
@@ -142,7 +142,6 @@ def profile_post(request, post_id):
     return render(request, 'profile.html', context)
 
 def show_city(request, city_id):
-    print('hello, world!')
     cities = City.objects.all()
     chosen_city = City.objects.get(id=city_id)
     posts = Post.objects.filter(city=city_id).order_by('-post_date')
@@ -173,5 +172,22 @@ def city_post(request, city_id, post_id):
         'profile': profile,
         'hidden': ""
     }
+    return render(request, 'show_city.html', context)
+
+def newpost(request, city_id):
+    if request.method == 'POST':
+        pass
+    else:
+        cities = City.objects.all()
+        chosen_city = City.objects.get(id=city_id)
+        posts = Post.objects.filter(city=city_id).order_by('-post_date')
+        post_form = PostForm()
+        context = {
+            'cities': cities,
+            'chosen_city': chosen_city,
+            'posts': posts,
+            'post_form': post_form,
+            'hidden': ""
+        }
     return render(request, 'show_city.html', context)
 
