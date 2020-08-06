@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Image Test{% endblock %}
+
+{% block main %}
+<h1> Form should be here: </h1>
+<form method = "post" enctype="multipart/form-data"> 
+    {% csrf_token %} 
+    {{ form.as_p }} 
+    <button type="submit">Upload</button> 
+</form> 
+
+{% endblock %}

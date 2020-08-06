@@ -28,7 +28,14 @@ profile
 </div>
  <div class="profile-content">
    <section class="profile">
-    <img src="{{ profile.image }}" alt="post name">
+    <div class="image-display">
+      <img class="profile-img" src="{{ profile.image.url }}" alt="post name">
+      <form method = "post" enctype="multipart/form-data"> 
+        {% csrf_token %} 
+        {{ image_form.as_p }} 
+        <button type="submit">Upload</button> 
+      </form> 
+    </div>
     <div class="username">
       <h6>Name</h6>
       <h2>{{ profile.display_name }}</h2>
@@ -59,7 +66,7 @@ profile
     {% for post in posts %}
     <a href="{% url 'profile_post' post.id %}">
       <div class="postbox">
-        <img src="{{ profile.image }}" alt="post name"> 
+        <img src="{{ profile.image.url }}" alt="post name"> 
           <div class="posttext">
           <h2>{{ post.title }}</h2>
           <p>{{ post.blurb }}</p>
