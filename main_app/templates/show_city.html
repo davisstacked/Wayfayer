@@ -29,13 +29,13 @@ City View
           <button type="submit">Submit</button>
         </form>
       {% endif %}
-      {% if route == "delete" %}
-      <form action="{% url 'deletepost' chosen_city.id post.id %}" method="POST">
-        {% csrf_token %}
-        Are you sure?
-        <a href="{% url 'show_city' chosen_city.id post.id %}"><button>No</button></a>
-        <button type="submit">Yes, delete</button>
-      </form>
+      {% if formType == "delete" %}
+        <form action="{% url 'deletepost' chosen_city.id post.id %}" method="POST">
+          {% csrf_token %}
+          Are you sure?
+          <a href="{% url 'show_city' chosen_city.id post.id %}"><button>No</button></a>
+          <button type="submit">Yes, delete</button>
+        </form>
       {% endif %}
   </div>
 </div>
