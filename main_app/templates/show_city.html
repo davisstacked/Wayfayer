@@ -12,7 +12,7 @@ City View
       {% if post %}
         <div class="post-show">
           <h2>{{ post.title }}</h2>
-          <h3>in {{ city.name }}</h3>
+          <h3>in {{ post_city.name }}</h3>
           <hr>
           <p>{{ post.blurb }}</p>
           <h5>by {{ profile.display_name }} </h5>
@@ -34,7 +34,7 @@ City View
    <section class="posts">
     <h2>Posts</h2>
     {% for post in posts %}
-    <a href="{% url 'profile_post' post.id %}">
+    <a href="{% url 'city_post' chosen_city.id post.id %}">
       <div class="postbox">
         <img src="{{ profile.image.url }}" alt="post name"> 
           <div class="posttext">

@@ -144,14 +144,34 @@ def profile_post(request, post_id):
 def show_city(request, city_id):
     print('hello, world!')
     cities = City.objects.all()
-    city = City.objects.get(id=city_id)
+    chosen_city = City.objects.get(id=city_id)
     posts = Post.objects.filter(city=city_id).order_by('-post_date')
     context = {
         'cities': cities,
-        'city': city,
+        'chosen_city': chosen_city,
         'posts': posts,
         'hidden': "hidden"
     }
     return render(request, 'show_city.html', context)
 
+
+def city_post(request, city_id, post_id):
+    cities = City.objects.all()
+    post = Post.objects.get(id=post_id)
+    user = User.objects.get(id=post.user.id)
+    posts = Post.objects.filter(city=city_id).order_by('-post_date')
+    chosen_city = City.objects.get(id=city_id)
+    post_city = City.objects.get(id=post.city.id)
+    profile = Profile.objects.get(user=request.user)
+    context = {
+        'cities': cities,
+        'chosen_city': chosen_city,
+        'user': user,
+        'posts': posts,
+        'post': post,
+        'post_city': post_city,
+        'profile': profile,
+        'hidden': ""
+    }
+    return render(request, 'show_city.html', context)
 
