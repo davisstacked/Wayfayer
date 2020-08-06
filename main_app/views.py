@@ -145,7 +145,6 @@ def show_city(request, city_id):
     cities = City.objects.all()
     chosen_city = City.objects.get(id=city_id)
     posts = Post.objects.filter(city=city_id).order_by('-post_date')
-
     context = {
         'cities': cities,
         'chosen_city': chosen_city,
@@ -221,4 +220,22 @@ def editpost(request, city_id, post_id):
         post_form = PostForm(instance=post)
         context['post_form'] = post_form
         context['hidden'] = ""
+    return render(request, 'show_city.html', context)
+
+def deletepost(request, city_id, post_id):
+    cities = City.objects.all()
+    chosen_city = City.objects.get(id=city_id)
+    posts = Post.objects.filter(city=city_id).order_by('-post_date').order_by('title')
+    post = Post.objects.get(id=post_id)
+    context = {
+            'cities': cities,
+            'chosen_city': chosen_city,
+            'posts': posts,
+            'post': post
+    }
+    if request.method == 'POST':
+        pass
+    else:
+        context['hidden'] = ""
+        context['delete'] = "delete"
     return render(request, 'show_city.html', context)

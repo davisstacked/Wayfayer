@@ -25,6 +25,14 @@ City View
           <button type="submit">Submit</button>
         </form>
       {% endif %}
+      {% if delete %}
+      <form action="{% url 'deletepost' chosen_city.id post.id %}" method="POST">
+        {% csrf_token %}
+        Are you sure?
+        <a href="{% url 'show_city' chosen_city.id post.id %}"><button>No</button></a>
+        <button type="submit">Yes, delete</button>
+      </form>
+      {% endif %}
   </div>
 </div>
  <div class="profile-content">
@@ -43,6 +51,12 @@ City View
     {% for post in posts %}
     <a href="{% url 'city_post' chosen_city.id post.id %}">
       <div class="postbox">
+        <a href="{% url 'editpost' chosen_city.id post.id %}">
+          <button>Edit</button>
+        </a>
+        <a href="{% url 'deletepost' chosen_city.id post.id %}">
+          <button>Delete</button>
+        </a>
         <img src="{{ profile.image.url }}" alt="post name"> 
           <div class="posttext">
           <h2>{{ post.title }}</h2>
