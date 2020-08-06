@@ -12,6 +12,7 @@ urlpatterns = [
     path('accounts/profile/<int:post_id>/', views.profile_post, name='profile_post'),
     path('cities/<int:city_id>/', views.show_city, name='show_city'),
     path('cities/<int:city_id>/newpost/', views.newpost, name='newpost'),
+    path('cities/<int:city_id>/editpost/<int:post_id>/', views.editpost, name='editpost'),
     path('cities/<int:city_id>/<int:post_id>/', views.city_post, name='city_post'),
 ]
 

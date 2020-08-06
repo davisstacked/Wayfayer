@@ -145,6 +145,7 @@ def show_city(request, city_id):
     cities = City.objects.all()
     chosen_city = City.objects.get(id=city_id)
     posts = Post.objects.filter(city=city_id).order_by('-post_date')
+
     context = {
         'cities': cities,
         'chosen_city': chosen_city,
@@ -198,3 +199,26 @@ def newpost(request, city_id):
         context['hidden'] = ""
     return render(request, 'show_city.html', context)
 
+def editpost(request, city_id, post_id):
+    cities = City.objects.all()
+    chosen_city = City.objects.get(id=city_id)
+    posts = Post.objects.filter(city=city_id).order_by('-post_date').order_by('title')
+    context = {
+            'cities': cities,
+            'chosen_city': chosen_city,
+            'posts': posts,
+    }
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid:
+            post = form.save(commit=False)
+            post.user = request.user
+            post.city = chosen_city
+            post.save()
+            context['hidden'] = "hidden"
+    else:
+        post = Post.objects.get(id=post_id)
+        post_form = PostForm(instance=post)
+        context['post_form'] = post_form
+        context['hidden'] = ""
+    return render(request, 'show_city.html', context)
