@@ -154,6 +154,7 @@ h6 {
 
 .cities {
     width: 30%;
+    min-width: 330px;
     margin-left: 10px;
 }
 
