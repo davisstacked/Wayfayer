@@ -15,7 +15,7 @@ class Profile(models.Model):
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     display_name = models.CharField(max_length=200)
     join_date = models.DateField(auto_now=False, auto_now_add=True)
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/', default='images/blank-profile.png')
 
 
 class Post(models.Model):
