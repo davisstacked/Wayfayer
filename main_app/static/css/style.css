@@ -197,6 +197,16 @@ h6 {
     margin-right: 10px;
 }
 
+.post-header {
+    display: flex;
+    justify-content: space-between;
+}
+.post-header i {
+    font-size: 3em !important;
+    margin-right: 50px;
+    margin-bottom: 10px;
+}
+
 .postbox {
     height: 150px;
     width: 95%;

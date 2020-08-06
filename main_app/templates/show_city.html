@@ -8,8 +8,8 @@ City View
 <div class="dialogueContainer {{ hidden }}">
   <div class="dialogueBox">
       <!-- this is where we'll put the login/signup forms -->
-      <span class="close-box"><i class="far fa-times-circle fa-2x"></i></span>
-      {% if post %}
+      <span class="close-box"><i class="far fa-times-circle fa-3x"></i></span>
+      {% if formType == "post" %}
         <div class="post-show">
           <h2>{{ post.title }}</h2>
           <h3>in {{ post_city.name }}</h3>
@@ -19,13 +19,17 @@ City View
         </div>
       {% endif %}
       {% if post_form %}
-      <form action="{% url 'newpost' chosen_city.id %}" method="POST">
+        {% if formType == 'newpost' %}
+          <form action="{% url 'newpost' chosen_city.id %}" method="POST">
+        {% elif formType == 'editpost' %}
+          <form action="{% url 'editpost' chosen_city.id post.id %}" method="POST">
+        {% endif %}
           {% csrf_token %}
           {{ post_form.as_p}}
           <button type="submit">Submit</button>
         </form>
       {% endif %}
-      {% if delete %}
+      {% if route == "delete" %}
       <form action="{% url 'deletepost' chosen_city.id post.id %}" method="POST">
         {% csrf_token %}
         Are you sure?
@@ -40,15 +44,22 @@ City View
     <h2>City</h2>
     {% for city in cities %}
         <div class="citybox">
-           <img src="{{ city.image }}" alt="city name"> 
-            <h2>{{ city.name }}</h2>
+          
+            <img src="{{ city.image }}" alt="city name"> 
+            <a href="{% url 'show_city' city.id %}">
+              <h2>{{ city.name }}</h2>
+            </a>
         </div>
         {% endfor %} 
    </section>
    <section class="posts">
-    <a class="add-post" href="{% url 'newpost' chosen_city.id %}"><i class="fas fa-plus-circle fa-2x"></i></a>
-    <h2>Posts</h2>
-    {% for post in posts %}
+    <div class="post-header">
+      <h2>Posts</h2>
+      <a class="add-post" href="{% url 'newpost' chosen_city.id %}">
+        <i class="fas fa-plus-circle fa-2x"></i>
+      </a>
+    </div>
+  {% for post in posts %}
     <a href="{% url 'city_post' chosen_city.id post.id %}">
       <div class="postbox">
         <a href="{% url 'editpost' chosen_city.id post.id %}">
