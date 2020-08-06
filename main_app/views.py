@@ -72,18 +72,26 @@ def signup(request):
         return render(request, 'home.html', context)
 
 def profile(request):
-    cities = City.objects.all()
-    user = User.objects.get(id=request.user.id)
-    posts = Post.objects.filter(user=request.user.id)
-    profile = Profile.objects.get(user=request.user)
-    context = {
-        'cities': cities,
-        'user': user,
-        'posts': posts,
-        'profile': profile,
-        'hidden': "hidden"
-    }
-    return render(request, 'profile.html', context)
+    if request.method == "POST":
+        profile = Profile.objects.get(user=request.user)
+        form = ImageForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            print(request.FILES)
+            form.save()
+            return redirect('profile')
+    else:
+        cities = City.objects.all()
+        user = User.objects.get(id=request.user.id)
+        posts = Post.objects.filter(user=request.user.id)
+        profile = Profile.objects.get(user=request.user)
+        context = {
+            'cities': cities,
+            'user': user,
+            'posts': posts,
+            'profile': profile,
+            'hidden': "hidden"
+        }
+        return render(request, 'profile.html', context)
 
 def edit_profile(request):
     user = User.objects.filter(id=request.user.id)
@@ -91,7 +99,7 @@ def edit_profile(request):
     cities = City.objects.all()
     posts = Post.objects.filter(user=request.user.id)
     if request.method == 'POST':
-        profile_form = ProfileForm(request.POST, instance=profile)
+        profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
         if profile_form.is_valid():
             profile_form.save()
             context = {
