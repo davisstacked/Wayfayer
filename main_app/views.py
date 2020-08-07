@@ -82,10 +82,12 @@ def profile(request):
     # else:
         cities = City.objects.all()
         user = User.objects.get(id=request.user.id)
-        posts = Post.objects.filter(user=request.user.id)
+        posts = Post.objects.filter(user=request.user.id).select_related('city')
         profile = Profile.objects.get(user=request.user)
+        chosen_city = profile.city
         context = {
             'cities': cities,
+            'chosen_city': chosen_city,
             'user': user,
             'posts': posts,
             'profile': profile,
