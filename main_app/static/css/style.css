@@ -268,3 +268,30 @@ h6 {
     right: 20px;
     bottom: 10px;
 }
+
+.bios {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100vw;
+}
+
+.bio {
+    width: 200px;
+    border: 5px solid black;
+}
+
+.bio img {
+    width: 190px;
+    height: 190px;
+    object-fit: cover;
+}
+
+.bio h3, 
+.bio p {
+    margin: 5px;
+}
+
+.bio h3, h2 {
+    text-align: center;
+}
