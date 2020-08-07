@@ -193,12 +193,12 @@ def newpost(request, city_id):
         if form.is_valid:
             post = form.save(commit=False)
             post.user = request.user
-            post.city = chosen_city
+            # post.city = chosen_city
             post.save()
             context['hidden'] = "hidden"
             # return redirect('show_city.html', context)
     else:
-        post_form = PostForm()
+        post_form = PostForm({'city': chosen_city})
         context['post_form'] = post_form
         context['hidden'] = ""
         context['formType'] = 'newpost'
@@ -219,7 +219,7 @@ def editpost(request, city_id, post_id):
         if form.is_valid:
             post = form.save(commit=False)
             post.user = request.user
-            post.city = chosen_city
+            # post.city = chosen_city
             post.save()
             context['hidden'] = "hidden"
             context['showform'] = "hidden"
