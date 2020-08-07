@@ -158,6 +158,7 @@ def show_city(request, city_id):
         'cities': cities,
         'chosen_city': chosen_city,
         'posts': posts,
+        'user': request.user,
         'hidden': "hidden"
     }
     return render(request, 'show_city.html', context)

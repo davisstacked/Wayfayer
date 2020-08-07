@@ -176,17 +176,20 @@ h6 {
     min-width: 330px;
     margin-left: 10px;
 }
-
+.cities-click {
+    cursor: pointer;
+}
 .citybox {
     width: 95%;
     height: 100px;
-    background-color: orange;
+    background-color: grey;
     border-radius: 20px;
     display: flex;
     align-items: center;
     padding: 10px;
     border: 2px solid grey;
-    margin: 15px 0px;
+    margin: 15px 0;
+    cursor: pointer;
 }
 .citybox h2,
 .posttext {
