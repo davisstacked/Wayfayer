@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <!-- JS files -->
     <script defer src="{% static 'js/app.js' %}"></script>
+    {% block JS %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>

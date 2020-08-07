@@ -138,7 +138,7 @@ def profile_post(request, post_id):
         'post': post,
         'profile': profile,
         'hidden': "",
-        'formType': post
+        # 'formType': post
     }
     return render(request, 'profile.html', context)
 
@@ -171,7 +171,8 @@ def city_post(request, city_id, post_id):
         'post': post,
         'post_city': post_city,
         'profile': profile,
-        'hidden': ""
+        'hidden': "",
+        'formType': "post"
     }
     return render(request, 'show_city.html', context)
 
@@ -228,5 +229,7 @@ def editpost(request, city_id, post_id):
 
 def deletepost(request, city_id, post_id):
     post = Post.objects.get(id=post_id)
+    # print(post.city_name)
+    print("in deletepost block")
     post.delete()
     return redirect('show_city', city_id=city_id)

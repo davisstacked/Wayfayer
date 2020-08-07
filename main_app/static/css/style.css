@@ -217,3 +217,17 @@ h6 {
     padding: 10px;
     border: 2px solid grey;
 }
+
+/* delete modal */
+.delete-modal{
+    width: 90%;
+    height: 150px;
+    margin: 10px;
+    margin-top: 60px;
+    position: relative;
+}
+.btn-actions {
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+}
