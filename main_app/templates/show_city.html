@@ -50,7 +50,11 @@ City View
    <section class="cities">
     <h2>City</h2>
     {% for city in cities %}
-        <div class="citybox">
+      {% if city.id is chosen_city.id %}
+        <div class="citybox" style='background: orange'>
+        {% else %}
+        <div class="citybox" style='background: grey'>  
+        {% endif %}
             <img src="{{ city.image }}" alt="city name"> 
             <a href="{% url 'show_city' city.id %}">
               <h2>{{ city.name }}</h2>
