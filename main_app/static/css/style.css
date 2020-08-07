@@ -197,6 +197,40 @@ h6 {
     margin-right: 10px;
 }
 
+.city-header {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.chosen-cities {
+    z-index: 41;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.25);
+    color: white;
+    width: 95%;
+    height: 50px;
+}
+
+.chosen-cities h2 {
+    margin: 0px 10px;
+}
+
+.city-header img {
+    width: 95%;
+    margin-right: 50px;
+    height: 200px;
+    object-fit: cover;
+    object-position: 50% 100%;
+    position: absolute;
+    z-index: 40;
+}
+
 .post-header {
     display: flex;
     justify-content: space-between;

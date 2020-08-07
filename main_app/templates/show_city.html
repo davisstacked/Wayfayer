@@ -59,6 +59,12 @@ City View
         {% endfor %} 
    </section>
    <section class="posts">
+    <div class="city-header">
+     <div class="chosen-cities"> 
+      <h2>{{chosen_city.name}}, {{chosen_city.country}}</h2>
+     </div> 
+      <img src="{{chosen_city.image}}">
+    </div> 
     <div class="post-header">
       <h2>Posts</h2>
       <a class="add-post" href="{% url 'newpost' chosen_city.id %}">
