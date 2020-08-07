@@ -177,8 +177,7 @@ h6 {
     font-size: 9px;
 }
 
-.citybox img,
-.postbox img {
+.citybox img {
     height: 90%;
 }
 
@@ -245,6 +244,9 @@ h6 {
     color: #5a1f4f;
 }
 
+.posttext {
+    width: calc(100% - 90px);
+}
 
 .citybox h2,
 .posttext {
@@ -301,7 +303,7 @@ h6 {
 }
 
 .postbox {
-    height: 150px;
+    min-height: 150px;
     width: 95%;
     background-color: seashell;
     border-radius: 20px;
@@ -310,6 +312,40 @@ h6 {
     padding: 10px;
     border: 2px solid grey;
     margin: 10px 0px;
+    position: relative;
+    overflow: hidden;
+}
+.postbox img {
+    height: 120px;
+    width: 120px;
+    object-fit: cover;
+}
+
+/* Edit / Delete Button */
+.ed-del-buttons {
+    position: absolute;
+    right: 0;
+    height: 100%;
+}
+#ed-btn,
+#delete-btn {
+    border: none;
+    height: 50%;
+    width: 80px;
+    display: block;
+    border-left: 2px solid gray;
+    font-size: 20px;
+}
+#ed-btn:hover,
+#delete-btn:hover {
+    text-decoration: underline;
+}
+#ed-btn {
+    background: #fff0f5;
+}
+#delete-btn {
+    background: #e6e6fa;
+    border-top: 2px solid gray;
 }
 
 /* delete modal */
@@ -366,4 +402,48 @@ h6 {
 
 .links a {
     margin: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .cities,
+    .posts {
+        width: 100%;
+    }
+    .image-display {
+        width: 100%;
+        height: 120px;
+        display: flex;
+        justify-content: center;
+    }
+    .profile {
+        flex-wrap: wrap;
+        height: 250px;
+    }
+    .postbox img {
+        margin-bottom: 60px;
+    }
+    .posttext {
+        width: 100%;
+        margin-bottom: 60px;
+    } 
+    .ed-del-buttons {
+        right: none;
+        bottom: 0;
+        display: flex;
+        height: 50px;
+        width: 100%;
+        border-top: 2px solid gray;
+    }
+    .ed-del-buttons a {
+        width: 50%;
+    }
+    #ed-btn,
+    #delete-btn {
+        height: 50px;
+        width: 100%;
+        border: none;
+    }
+    #delete-btn {
+        border-left: 2px solid gray;
+    }
 }

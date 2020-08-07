@@ -79,16 +79,6 @@ City View
     </div>
     {% for post in posts %}
     <div class="postbox">
-      {% if user.is_authenticated and post.user == user %}
-        <div class="ed-del-buttons">
-          <a href="{% url 'editpost' chosen_city.id post.id %}">
-            <button>Edit</button>
-          </a>
-          <a >
-            <button id="delete-btn" data-cityid={{chosen_city.id}} data-postid={{post.id}}>Delete</button>
-          </a>
-        </div>
-      {% endif %}
       <img src="{{ post.user.profile.image.url }}" alt="post name"> 
       <a href="{% url 'city_post' chosen_city.id post.id %}">
         <div class="posttext">
@@ -96,6 +86,16 @@ City View
           <p>{{ post.blurb|truncatechars:200 }}</p>
         </div> 
       </a>
+      {% if user.is_authenticated and post.user == user %}
+        <div class="ed-del-buttons">
+          <a href="{% url 'editpost' chosen_city.id post.id %}">
+            <button id="ed-btn">Edit</button>
+          </a>
+          <a >
+            <button id="delete-btn" data-cityid={{chosen_city.id}} data-postid={{post.id}}>Delete</button>
+          </a>
+        </div>
+      {% endif %}
     </div>
     {% endfor %} 
    </section>
