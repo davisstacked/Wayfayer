@@ -12,8 +12,9 @@ City View
 {%block main%}
 <div class="dialogueContainer {{ hidden }}">
   <div class="dialogueBox">
-      <!-- this is where we'll put the login/signup forms -->
-      <span class="close-box"><i class="far fa-times-circle fa-3x"></i></span>
+    <span class="close-box"><i class="far fa-times-circle fa-3x"></i></span>
+    <div class="show-form" {{ showform}}>
+      <!-- the post/newpost/editpost forms -->
       {% if formType == "post" %}
         <div class="post-show">
           <h2>{{ post.title }}</h2>
@@ -34,15 +35,15 @@ City View
           <button type="submit">Submit</button>
         </form>
       {% endif %}
-      <!-- delete modal -->
-      
-      <div class="delete-modal hidden" >
-        <h5>Are you sure you want to delete?</h5>
-        <div class="btn-actions">
-          <button id="delete-action">Delete</button>
-          <Button id="cancel-action">Cancel</Button>
-        </div>
+    </div>
+    <!-- delete modal -->
+    <div class="delete-modal" hidden >
+      <h5>Are you sure you want to delete?</h5>
+      <div class="btn-actions">
+        <button id="delete-action">Delete</button>
+        <Button id="cancel-action">Cancel</Button>
       </div>
+    </div>
   </div>
 </div>
  <div class="profile-content">

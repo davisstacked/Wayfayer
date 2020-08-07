@@ -106,7 +106,8 @@ def edit_profile(request):
                 'user': request.user,
                 'posts': posts,
                 'profile': profile,
-                'hidden': "hidden"
+                'hidden': "hidden",
+                'showform': "hidden",
             }
             return render(request, 'profile.html', context)
         else:
@@ -119,7 +120,8 @@ def edit_profile(request):
             'posts': posts,
             'profile': profile,
             'profile_form': profile_form,
-            'hidden': ""
+            'hidden': "",
+            'showform': "",
         }
         return render(request, 'profile.html', context)
 
@@ -172,6 +174,7 @@ def city_post(request, city_id, post_id):
         'post_city': post_city,
         'profile': profile,
         'hidden': "",
+        'showform': "",
         'formType': "post"
     }
     return render(request, 'show_city.html', context)
@@ -219,11 +222,13 @@ def editpost(request, city_id, post_id):
             post.city = chosen_city
             post.save()
             context['hidden'] = "hidden"
+            context['showform'] = "hidden"
     else:
         post_form = PostForm(instance=post)
         context['post'] = post
         context['post_form'] = post_form
         context['hidden'] = ""
+        context['showform'] = ""
         context['formType'] = 'editpost'
     return render(request, 'show_city.html', context)
 

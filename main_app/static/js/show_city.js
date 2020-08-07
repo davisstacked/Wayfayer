@@ -1,29 +1,30 @@
 console.log("Show_city")
 
-const deleteBtns = document.querySelectorAll('#delete-btn')
+const showForm = document.querySelector('.show-form');
+const deleteBtns = document.querySelectorAll('#delete-btn');
 const deleteModal = document.querySelector('.delete-modal');
-const deleteActioin = document.getElementById('delete-action')
-const cancelActioin = document.getElementById('cancel-action')
-// const dialogueContainer = document.querySelector('.dialogueContainer')
+const deleteActioin = document.getElementById('delete-action');
+const cancelActioin = document.getElementById('cancel-action');
+
 let postId, cityid;
 
 deleteBtns.forEach(btn => btn.addEventListener('click', e => {
-    // console.log(btn.dataset.postid);
+    showForm.hidden = true;
     cityid = btn.dataset.cityid
     postid = btn.dataset.postid
     dialogueContainer.classList.remove('hidden')
-    deleteModal.classList.remove('hidden');
+    deleteModal.hidden = false;
 }))
 
 cancelActioin.addEventListener('click', e => {
-    console.log("cancel action", cityid, postid)
     dialogueContainer.classList.add('hidden')
-    deleteModal.classList.add('hidden');
+    showForm.hidden = false;
+    deleteModal.hidden = true;
 })
 
 deleteActioin.addEventListener('click', e => {
-    console.log("delete action", cityid, postid)
     dialogueContainer.classList.add('hidden')
-    deleteModal.classList.add('hidden');
+    deleteModal.hidden = true;
+    showForm.hidden = false;
     window.location.href = `/cities/${cityid}/deletepost/${postid}/`
 })
