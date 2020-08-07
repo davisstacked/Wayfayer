@@ -8,15 +8,15 @@ const cities = document.querySelector('.cities-click')
 
 
 cities.addEventListener('click', e => {
-    profileCity.forEach(city => city.style.background = 'gray')
+    profileCity.forEach(city => city.style.backgroundColor = 'seashell')
     profilePost.forEach(post => {
         post.hidden = false;
     })
 })
 
 profileCity.forEach(city => city.addEventListener('click', e => {
-    profileCity.forEach(city => city.style.background = 'gray')
-    city.style.background = 'orange'
+    profileCity.forEach(city => city.style.backgroundColor = 'seashell')
+    city.style.backgroundColor = 'plum'
     const chosenCity = city.dataset.city
     profilePost.forEach(post => {
         post.hidden = false;
