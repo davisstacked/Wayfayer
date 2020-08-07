@@ -13,6 +13,12 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
+def about(request):
+    context = {
+        'hidden': "hidden"
+    }
+    return render(request, 'about.html', context)    
+
 def login_page(request):
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
