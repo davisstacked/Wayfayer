@@ -55,15 +55,21 @@ Homepage
   </div>
   <div class="topics">
     <div class="topic">
-      <h3>Create</h3>
+      {% if user.is_authenticated %}
+        <a href="{% url 'profile' %}">
+      {% else %}
+        <a href="{% url 'login' %}">
+      {% endif %}
+          <h3>Create</h3>
+        </a>
       <p>Your own profile. Share posts of your discoveries from new cities around the world with friends and fellow travelers</p>
     </div>
     <div class="topic">
-      <h3>Explore</h3>
+      <a href="{% url 'show_city' 1 %}"><h3>Explore</h3></a>
       <p>Hidden gems and local haunts through our diverse and ever-growing community of like-minded explorers. </p>
     </div>
     <div class="topic">
-      <h3>Learn</h3>
+      <a href="{% url 'about' %}"><h3>Learn</h3></a>
       <p>We created Wayfayer as a unique way to stay in touch with each other since we're from all over the world ourselves!</p>
     </div>
   </div>
