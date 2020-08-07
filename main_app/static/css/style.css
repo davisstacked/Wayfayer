@@ -245,8 +245,10 @@ h6 {
 }
 
 .posttext {
-    width: calc(100% - 90px);
+    width: 100%;
+    padding-right: 90px;
 }
+
 
 .citybox h2,
 .posttext {

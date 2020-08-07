@@ -5,10 +5,10 @@ const dialogueContainer = document.querySelector('.dialogueContainer') || null
 const profileCity = document.querySelectorAll('.profile-city') || null
 const profilePost = document.querySelectorAll('.profile-post') || null
 const cities = document.querySelector('.cities-click') || null // profile and show-city pages
-const postHeader = document.querySelector('.post-header') || null // profile and show-city pages
+const postHeader = document.querySelector('.profile-post-header') || null // profile and show-city pages
 let count = 0;
 
-if (cities !== null ) {
+if (cities !== null && postHeader !== null ) {
     count = 0;
     profilePost.forEach(post => {
         post.hidden = false;
