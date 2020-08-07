@@ -6,11 +6,19 @@ const profileCity = document.querySelectorAll('.profile-city') || null
 const profilePost = document.querySelectorAll('.profile-post') || null
 const cities = document.querySelector('.cities-click') || null // profile and show-city pages
 const postHeader = document.querySelector('.post-header') || null // profile and show-city pages
+let count = 0;
 
 if (cities !== null ) {
+    count = 0;
+    profilePost.forEach(post => {
+        post.hidden = false;
+        count++
+    })
+
+    postHeader.innerText = `Posts (${count})`
     cities.addEventListener('click', e => {
-        profileCity.forEach(city => city.style.background = 'gray')
-        let count = 0;
+        profileCity.forEach(city => city.style.background = 'seashell')
+        count = 0;
         profilePost.forEach(post => {
             post.hidden = false;
             count++
@@ -19,26 +27,29 @@ if (cities !== null ) {
     })
 }
 
-profileCity.forEach(city => city.addEventListener('click', e => {
-    profileCity.forEach(city => city.style.backgroundColor = 'seashell')
-    city.style.backgroundColor = 'plum'
-    const chosenCity = city.dataset.city
-    let count = 0;
-    profilePost.forEach(post => {
-        post.hidden = false;
-        if (post.dataset.city !== chosenCity) {
-            post.hidden = true
-        } else {
-            count++
-        }
+if (profileCity !== null ) {
+    profileCity.forEach(city => city.addEventListener('click', e => {
+        profileCity.forEach(city => city.style.backgroundColor = 'seashell')
+        city.style.backgroundColor = 'plum'
+        const chosenCity = city.dataset.city
+        count = 0;
+        profilePost.forEach(post => {
+            post.hidden = false;
+            if (post.dataset.city !== chosenCity) {
+                post.hidden = true
+            } else {
+                count++
+            }
+        })
+        postHeader.innerText = `Posts (${count})`
     })
-    postHeader.innerText = `Posts (${count})`
-})
-)
+    )
+}
 
-closeBox.addEventListener('click', e => {
-    dialogueContainer.classList.add('hidden')
-    window.history.back()
-})
-
+if (closeBox !== null ) {
+    closeBox.addEventListener('click', e => {
+        dialogueContainer.classList.add('hidden')
+        window.history.back()
+    })
+}
 
