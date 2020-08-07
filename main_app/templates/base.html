@@ -19,7 +19,7 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-globe-africa"></i> Wayfayer</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -41,6 +41,8 @@
                 <a class="dropdown-item" href="{% url 'show_city' 4 %}">New York City</a>
               </div>
             </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
             {%if user.is_authenticated%}
              <li class="nav-item">
               <a class="nav-link" href="{% url 'profile' %}">Profile</a>
