@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from .models import * 
 from .forms import ProfileForm, PostForm
 
@@ -71,6 +72,7 @@ def signup(request):
         }
         return render(request, 'home.html', context)
 
+@login_required
 def profile(request):
     # if request.method == "POST":
     #     profile = Profile.objects.get(user=request.user)
@@ -95,6 +97,7 @@ def profile(request):
         }
         return render(request, 'profile.html', context)
 
+@login_required
 def edit_profile(request):
     profile = Profile.objects.get(user=request.user)
     cities = City.objects.all()
@@ -127,6 +130,7 @@ def edit_profile(request):
         }
         return render(request, 'profile.html', context)
 
+@login_required
 def profile_post(request, post_id):
     cities = City.objects.all()
     user = User.objects.get(id=request.user.id)
@@ -154,6 +158,7 @@ def show_city(request, city_id):
         'cities': cities,
         'chosen_city': chosen_city,
         'posts': posts,
+        'user': request.user,
         'hidden': "hidden"
     }
     return render(request, 'show_city.html', context)
@@ -166,7 +171,7 @@ def city_post(request, city_id, post_id):
     posts = Post.objects.filter(city=city_id).select_related('user__profile').order_by('-post_date')
     chosen_city = City.objects.get(id=city_id)
     post_city = City.objects.get(id=post.city.id)
-    profile = Profile.objects.get(user=request.user)
+
     context = {
         'cities': cities,
         'chosen_city': chosen_city,
@@ -174,13 +179,14 @@ def city_post(request, city_id, post_id):
         'posts': posts,
         'post': post,
         'post_city': post_city,
-        'profile': profile,
+        # 'profile': profile,
         'hidden': "",
         'showform': "",
         'formType': "post"
     }
     return render(request, 'show_city.html', context)
 
+@login_required
 def newpost(request, city_id):
     cities = City.objects.all().order_by('name')
     chosen_city = City.objects.get(id=city_id)
@@ -206,6 +212,7 @@ def newpost(request, city_id):
         context['formType'] = 'newpost'
     return render(request, 'show_city.html', context)
 
+@login_required
 def editpost(request, city_id, post_id):
     cities = City.objects.all().order_by('name')
     chosen_city = City.objects.get(id=city_id)
@@ -234,6 +241,7 @@ def editpost(request, city_id, post_id):
         context['formType'] = 'editpost'
     return render(request, 'show_city.html', context)
 
+@login_required
 def deletepost(request, city_id, post_id):
     post = Post.objects.get(id=post_id)
     # print(post.city_name)
