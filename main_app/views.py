@@ -145,7 +145,7 @@ def profile_post(request, post_id):
     return render(request, 'profile.html', context)
 
 def show_city(request, city_id):
-    cities = City.objects.all()
+    cities = City.objects.all().order_by('name')
     chosen_city = City.objects.get(id=city_id)
     posts = Post.objects.filter(city=city_id).select_related('user__profile').order_by('-post_date')
     context = {
@@ -158,7 +158,7 @@ def show_city(request, city_id):
 
 
 def city_post(request, city_id, post_id):
-    cities = City.objects.all()
+    cities = City.objects.all().order_by('name')
     post = Post.objects.get(id=post_id)
     user = User.objects.get(id=post.user.id)
     posts = Post.objects.filter(city=city_id).select_related('user__profile').order_by('-post_date')
@@ -180,7 +180,7 @@ def city_post(request, city_id, post_id):
     return render(request, 'show_city.html', context)
 
 def newpost(request, city_id):
-    cities = City.objects.all()
+    cities = City.objects.all().order_by('name')
     chosen_city = City.objects.get(id=city_id)
     posts = Post.objects.filter(city=city_id).select_related('user__profile').order_by('-post_date').order_by('title')
     context = {
@@ -205,7 +205,7 @@ def newpost(request, city_id):
     return render(request, 'show_city.html', context)
 
 def editpost(request, city_id, post_id):
-    cities = City.objects.all()
+    cities = City.objects.all().order_by('name')
     chosen_city = City.objects.get(id=city_id)
     posts = Post.objects.filter(city=city_id).select_related('user__profile').order_by('-post_date').order_by('title')
     post = Post.objects.get(id=post_id)
