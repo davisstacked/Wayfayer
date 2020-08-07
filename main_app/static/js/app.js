@@ -20,8 +20,8 @@ if (cities !== null ) {
 }
 
 profileCity.forEach(city => city.addEventListener('click', e => {
-    profileCity.forEach(city => city.style.background = 'gray')
-    city.style.background = 'orange'
+    profileCity.forEach(city => city.style.backgroundColor = 'seashell')
+    city.style.backgroundColor = 'plum'
     const chosenCity = city.dataset.city
     let count = 0;
     profilePost.forEach(post => {

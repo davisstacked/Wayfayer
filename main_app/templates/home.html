@@ -29,13 +29,13 @@ Homepage
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80" class="d-block w-100" alt="...">
+        <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&h=800&q=80" class="d-block w-100" alt="...">
       </div>
       <div class="carousel-item">
-        <img src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" class="d-block w-100" alt="...">
+        <img src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&h=800&q=80" class="d-block w-100" alt="...">
       </div>
       <div class="carousel-item">
-        <img src="https://images.unsplash.com/photo-1519424187720-db6d0fc5a5d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" class="d-block w-100" alt="...">
+        <img src="https://images.unsplash.com/photo-1519424187720-db6d0fc5a5d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&h=800&q=80" class="d-block w-100" alt="...">
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -49,21 +49,28 @@ Homepage
   </div>
 
 <section class="description">
-  <div>
-    <h2>Wayfayer is</h2>   
+  <div class="site-title">
+    <h2>Wayfayer</h2>
+    <h4>An International Travel Blog</h4>   
   </div>
   <div class="topics">
     <div class="topic">
-      <h3>Topic</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi fugit quidem ratione natus at sint error corrupti possimus quam tempore.</p>
+      {% if user.is_authenticated %}
+        <a href="{% url 'profile' %}">
+      {% else %}
+        <a href="{% url 'login' %}">
+      {% endif %}
+          <h3>Create</h3>
+        </a>
+      <p>Your own profile. Share posts of your discoveries from new cities around the world with friends and fellow travelers</p>
     </div>
     <div class="topic">
-      <h3>Topic</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi fugit quidem ratione natus at sint error corrupti possimus quam tempore.</p>
+      <a href="{% url 'show_city' 1 %}"><h3>Explore</h3></a>
+      <p>Hidden gems and local haunts through our diverse and ever-growing community of like-minded explorers. </p>
     </div>
     <div class="topic">
-      <h3>Topic</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi fugit quidem ratione natus at sint error corrupti possimus quam tempore.</p>
+      <a href="{% url 'about' %}"><h3>Learn</h3></a>
+      <p>We created Wayfayer as a unique way to stay in touch with each other since we're from all over the world ourselves!</p>
     </div>
   </div>
 </section>

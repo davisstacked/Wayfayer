@@ -51,9 +51,9 @@ City View
     <a class="cities-click"><h2>Cities</h2></a>
     {% for city in cities %}
       {% if city.id is chosen_city.id %}
-        <div class="citybox" style='background: orange'>
+        <div class="citybox" style='background: plum'>
         {% else %}
-        <div class="citybox" style='background: grey'>  
+        <div class="citybox">  
         {% endif %}
             <img src="{{ city.image }}" alt="city name"> 
             <a href="{% url 'show_city' city.id %}">
@@ -80,12 +80,14 @@ City View
     {% for post in posts %}
     <div class="postbox">
       {% if user.is_authenticated and post.user == user %}
-        <a href="{% url 'editpost' chosen_city.id post.id %}">
-          <button>Edit</button>
-        </a>
-        <a >
-          <button id="delete-btn" data-cityid={{chosen_city.id}} data-postid={{post.id}}>Delete</button>
-        </a>
+        <div class="ed-del-buttons">
+          <a href="{% url 'editpost' chosen_city.id post.id %}">
+            <button>Edit</button>
+          </a>
+          <a >
+            <button id="delete-btn" data-cityid={{chosen_city.id}} data-postid={{post.id}}>Delete</button>
+          </a>
+        </div>
       {% endif %}
       <img src="{{ post.user.profile.image.url }}" alt="post name"> 
       <a href="{% url 'city_post' chosen_city.id post.id %}">

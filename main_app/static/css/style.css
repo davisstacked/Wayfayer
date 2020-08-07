@@ -6,6 +6,10 @@ body {
     position: relative;
 }
 
+.bg-light {
+    background-color: rgb(176, 126, 176) !important;
+}
+
 .helptext {
     height: 0 ;
     width: 0;
@@ -14,10 +18,22 @@ body {
 
 /* Home page styling */
 .carousel-inner {
-    height: 50vh;
+    width: 100vw;
+    min-height: 280px;
+    max-height: 40vh;
 }
 .carousel-item img {
-    object-fit: fill;
+    object-fit: contain !important;
+    object-position: 50% 50% !important;
+}
+
+.site-title {
+    width: 100vw;
+    background: rgb(240, 194, 240);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Dialogue box styling */
@@ -131,11 +147,12 @@ body {
 .profile {
     height: 150px;
     width: 100vw;
-    background-color: plum;
+    background-color: rgb(240, 194, 240);
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin: 10px;
+    margin-bottom: -10px;
 }
 
 .image-display {
@@ -169,30 +186,69 @@ h6 {
 .posts {
     margin-top: 20px;
     padding: 10px;
+    border: 2px solid black;
+    height: 550px;
+    overflow: scroll;
 }
 
 .cities {
+    background-color: #5a1f4f;
     width: 30%;
     min-width: 330px;
     margin-left: 10px;
 }
+
+.cities a {
+    text-decoration: none;
+    color: seashell;
+}
 .cities-click {
     cursor: pointer;
+    transition: 150ms;
+}
+.cities-click:hover {
+    text-decoration: underline;
+    color: plum;
 }
 .citybox {
     width: 95%;
     height: 100px;
-    background-color: grey;
+    background-color: seashell;
     border-radius: 20px;
     display: flex;
     align-items: center;
     padding: 10px;
-    border: 2px solid grey;
+    border: 2px solid black;
     margin: 15px 0;
     cursor: pointer;
+    transition: 150ms;
 }
+.citybox a,
+.posts a,
+.topic a {
+    text-decoration: none;
+    color: black;
+}
+
+.topic h3 {
+    color: #5a1f4f;
+}
+
+.citybox:hover h2,
+.postbox:hover,
+.topic:hover h3 {
+    color: #5a1f4f;
+    text-decoration: underline;
+}
+
+.add-post:hover {
+    color: #5a1f4f;
+}
+
+
 .citybox h2,
 .posttext {
+    transition: 150ms;
     margin-left: 10px;
 }
 .posts {
@@ -247,12 +303,13 @@ h6 {
 .postbox {
     height: 150px;
     width: 95%;
-    background-color: white;
+    background-color: seashell;
     border-radius: 20px;
     display: flex;
     align-items: center;
     padding: 10px;
     border: 2px solid grey;
+    margin: 10px 0px;
 }
 
 /* delete modal */
@@ -267,4 +324,46 @@ h6 {
     position: absolute;
     right: 20px;
     bottom: 10px;
+}
+
+.bios {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100vw;
+}
+
+.bio {
+    width: 250px;
+    height: 545px;
+    border: 5px solid black;
+    position: relative;
+}
+
+.bio img {
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
+}
+
+.bio h3, 
+.bio p {
+    margin: 5px;
+}
+
+.bio h3,
+.about-title {
+    text-align: center;
+}
+
+.links {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 10px;
+}
+
+.links a {
+    margin: 10px;
 }
