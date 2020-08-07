@@ -1,0 +1,88 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{% block JS %}
+<script defer src="{% static 'js/show_city.js' %}"></script>
+{% endblock %}
+
+{%block title%}
+City View 
+{%endblock%}
+
+{%block main%}
+<div class="dialogueContainer {{ hidden }}">
+  <div class="dialogueBox">
+    <span class="close-box"><i class="far fa-times-circle fa-3x"></i></span>
+    <div class="show-form" {{ showform}}>
+      <!-- the post/newpost/editpost forms -->
+      {% if formType == "post" %}
+        <div class="post-show">
+          <h2>{{ post.title }}</h2>
+          <h3>in {{ post_city.name }}</h3>
+          <hr>
+          <p>{{ post.blurb }}</p>
+          <h5>by {{ profile.display_name }} </h5>
+        </div>
+      {% endif %}
+      {% if post_form %}
+        {% if formType == 'newpost' %}
+          <form action="{% url 'newpost' chosen_city.id %}" method="POST">
+        {% elif formType == 'editpost' %}
+          <form action="{% url 'editpost' chosen_city.id post.id %}" method="POST">
+        {% endif %}
+          {% csrf_token %}
+          {{ post_form.as_p}}
+          <button type="submit">Submit</button>
+        </form>
+      {% endif %}
+    </div>
+    <!-- delete modal -->
+    <div class="delete-modal" hidden >
+      <h5>Are you sure you want to delete?</h5>
+      <div class="btn-actions">
+        <button id="delete-action">Delete</button>
+        <Button id="cancel-action">Cancel</Button>
+      </div>
+    </div>
+  </div>
+</div>
+ <div class="profile-content">
+   <section class="cities">
+    <h2>City</h2>
+    {% for city in cities %}
+        <div class="citybox">
+            <img src="{{ city.image }}" alt="city name"> 
+            <a href="{% url 'show_city' city.id %}">
+              <h2>{{ city.name }}</h2>
+            </a>
+        </div>
+        {% endfor %} 
+   </section>
+   <section class="posts">
+    <div class="post-header">
+      <h2>Posts</h2>
+      <a class="add-post" href="{% url 'newpost' chosen_city.id %}">
+        <i class="fas fa-plus-circle fa-2x"></i>
+      </a>
+    </div>
+    {% for post in posts %}
+    <div class="postbox">
+      <a href="{% url 'editpost' chosen_city.id post.id %}">
+        <button>Edit</button>
+      </a>
+      <a >
+        <button id="delete-btn" data-cityid={{chosen_city.id}} data-postid={{post.id}}>Delete</button>
+      </a>
+      <img src="{{ post.user.profile.image.url }}" alt="post name"> 
+      <a href="{% url 'city_post' chosen_city.id post.id %}">
+        <div class="posttext">
+          <h2>{{ post.title }}</h2>
+          <p>{{ post.blurb|truncatechars:200 }}</p>
+        </div> 
+      </a>
+    </div>
+    {% endfor %} 
+   </section>
+ </div>
+{%endblock%}
+

@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login
 from .models import * 
-from .forms import ProfileForm
+from .forms import ProfileForm, PostForm
 
 # Create your views here.
 def home(request):
@@ -72,14 +72,14 @@ def signup(request):
         return render(request, 'home.html', context)
 
 def profile(request):
-    if request.method == "POST":
-        profile = Profile.objects.get(user=request.user)
-        form = ImageForm(request.POST, request.FILES, instance=profile)
-        if form.is_valid():
-            print(request.FILES)
-            form.save()
-            return redirect('profile')
-    else:
+    # if request.method == "POST":
+    #     profile = Profile.objects.get(user=request.user)
+    #     form = ImageForm(request.POST, request.FILES, instance=profile)
+    #     if form.is_valid():
+    #         print(request.FILES)
+    #         form.save()
+    #         return redirect('profile')
+    # else:
         cities = City.objects.all()
         user = User.objects.get(id=request.user.id)
         posts = Post.objects.filter(user=request.user.id)
@@ -94,7 +94,6 @@ def profile(request):
         return render(request, 'profile.html', context)
 
 def edit_profile(request):
-    user = User.objects.filter(id=request.user.id)
     profile = Profile.objects.get(user=request.user)
     cities = City.objects.all()
     posts = Post.objects.filter(user=request.user.id)
@@ -104,10 +103,11 @@ def edit_profile(request):
             profile_form.save()
             context = {
                 'cities': cities,
-                'user': user,
+                'user': request.user,
                 'posts': posts,
                 'profile': profile,
-                'hidden': "hidden"
+                'hidden': "hidden",
+                'showform': "hidden",
             }
             return render(request, 'profile.html', context)
         else:
@@ -116,11 +116,12 @@ def edit_profile(request):
         profile_form = ProfileForm(instance=profile)
         context = {
             'cities': cities,
-            'user': user,
+            'user': request.user,
             'posts': posts,
             'profile': profile,
             'profile_form': profile_form,
-            'hidden': ""
+            'hidden': "",
+            'showform': "",
         }
         return render(request, 'profile.html', context)
 
@@ -138,6 +139,102 @@ def profile_post(request, post_id):
         'posts': posts,
         'post': post,
         'profile': profile,
-        'hidden': ""
+        'hidden': "",
+        # 'formType': post
     }
     return render(request, 'profile.html', context)
+
+def show_city(request, city_id):
+    cities = City.objects.all()
+    chosen_city = City.objects.get(id=city_id)
+    posts = Post.objects.filter(city=city_id).select_related('user__profile').order_by('-post_date')
+    context = {
+        'cities': cities,
+        'chosen_city': chosen_city,
+        'posts': posts,
+        'hidden': "hidden"
+    }
+    return render(request, 'show_city.html', context)
+
+
+def city_post(request, city_id, post_id):
+    cities = City.objects.all()
+    post = Post.objects.get(id=post_id)
+    user = User.objects.get(id=post.user.id)
+    posts = Post.objects.filter(city=city_id).select_related('user__profile').order_by('-post_date')
+    chosen_city = City.objects.get(id=city_id)
+    post_city = City.objects.get(id=post.city.id)
+    profile = Profile.objects.get(user=request.user)
+    context = {
+        'cities': cities,
+        'chosen_city': chosen_city,
+        'user': user,
+        'posts': posts,
+        'post': post,
+        'post_city': post_city,
+        'profile': profile,
+        'hidden': "",
+        'showform': "",
+        'formType': "post"
+    }
+    return render(request, 'show_city.html', context)
+
+def newpost(request, city_id):
+    cities = City.objects.all()
+    chosen_city = City.objects.get(id=city_id)
+    posts = Post.objects.filter(city=city_id).select_related('user__profile').order_by('-post_date').order_by('title')
+    context = {
+            'cities': cities,
+            'chosen_city': chosen_city,
+            'posts': posts,
+    }
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid:
+            post = form.save(commit=False)
+            post.user = request.user
+            post.city = chosen_city
+            post.save()
+            context['hidden'] = "hidden"
+            # return redirect('show_city.html', context)
+    else:
+        post_form = PostForm()
+        context['post_form'] = post_form
+        context['hidden'] = ""
+        context['formType'] = 'newpost'
+    return render(request, 'show_city.html', context)
+
+def editpost(request, city_id, post_id):
+    cities = City.objects.all()
+    chosen_city = City.objects.get(id=city_id)
+    posts = Post.objects.filter(city=city_id).select_related('user__profile').order_by('-post_date').order_by('title')
+    post = Post.objects.get(id=post_id)
+    context = {
+            'cities': cities,
+            'chosen_city': chosen_city,
+            'posts': posts,
+    }
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid:
+            post = form.save(commit=False)
+            post.user = request.user
+            post.city = chosen_city
+            post.save()
+            context['hidden'] = "hidden"
+            context['showform'] = "hidden"
+    else:
+        post_form = PostForm(instance=post)
+        context['post'] = post
+        context['post_form'] = post_form
+        context['hidden'] = ""
+        context['showform'] = ""
+        context['formType'] = 'editpost'
+    return render(request, 'show_city.html', context)
+
+def deletepost(request, city_id, post_id):
+    post = Post.objects.get(id=post_id)
+    # print(post.city_name)
+    print("in deletepost block")
+    post.delete()
+    return redirect('show_city', city_id=city_id)
