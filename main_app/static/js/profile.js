@@ -1,4 +1,4 @@
-console.log("Show_city")
+console.log("Profile")
 
 const showForm = document.querySelector('.show-form');
 const deleteBtns = document.querySelectorAll('#delete-btn');
@@ -10,9 +10,7 @@ let postId, cityid;
 
 deleteBtns.forEach(btn => btn.addEventListener('click', e => {
     showForm.hidden = true;
-    cityid = btn.dataset.cityid
     postid = btn.dataset.postid
-    pageid = btn.data.set.pageid
     dialogueContainer.classList.remove('hidden')
     deleteModal.hidden = false;
 }))
@@ -27,5 +25,5 @@ deleteActioin.addEventListener('click', e => {
     dialogueContainer.classList.add('hidden')
     deleteModal.hidden = true;
     showForm.hidden = false;
-    window.location.href = `/cities/${cityid}/deletepost/${postid}/`
+    window.location.href = `/accounts/profile/${postid}/deletepost/`
 })

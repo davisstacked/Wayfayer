@@ -1,13 +1,18 @@
 {%extends 'base.html'%}
+{% load static %}
 
 {%block title%}
 profile
 {%endblock%}
 
+{% block JS %}
+<script defer src="{% static 'js/profile.js' %}"></script>
+{% endblock %}
+
 {%block main%}
 <div class="dialogueContainer {{ hidden }}">
   <div class="dialogueBox">
-      <!-- this is where we'll put the login/signup forms -->
+    <div class="show-form" {{ showform}}>
       <span class="close-box"><i class="far fa-times-circle fa-2x"></i></span>
       {% if profile_form %}
       <form action="{% url 'edit_profile' %}" method="POST" enctype="multipart/form-data">
@@ -25,7 +30,22 @@ profile
           <h5>by {{ profile.display_name }} </h5>
         </div>
       {% endif %}
-      
+      {% if post_form %}
+        <form action="{% url 'profile_editpost' post.id %}" method="POST">
+          {% csrf_token %}
+          {{ post_form.as_p}}
+          <button type="submit">Submit</button>
+        </form>
+      {% endif %}
+    </div>
+    <!-- delete modal -->
+    <div class="delete-modal" hidden >
+      <h5>Are you sure you want to delete?</h5>
+      <div class="btn-actions">
+        <button id="delete-action">Delete</button>
+        <Button id="cancel-action">Cancel</Button>
+      </div>
+    </div>
   </div>
 </div>
  <div class="profile-content">
@@ -61,15 +81,23 @@ profile
    <section class="posts">
     <h2 class="post-header profile-post-header">Posts</h2>
     {% for post in posts %}
-      <a href="{% url 'profile_post' post.id %}">
-        <div class="profile-post postbox" data-city="{{ post.city.name }}">
-          <img src="{{ profile.image.url }}" alt="post name"> 
+    <div class="profile-post postbox user-btn-rm" data-city="{{ post.city.name }}">
+      <img src="{{ profile.image.url }}" alt="post name"> 
+          <a href="{% url 'profile_post' post.id %}">
             <div class="posttext">
             <h2>{{ post.title }}</h2>
             <p>{{ post.blurb|truncatechars:200 }}</p>
             </div> 
+          </a>
+          <div class="ed-del-buttons">
+            <a href="{% url 'profile_editpost' post.id %}">
+              <button id="ed-btn">Edit</button>
+            </a>
+            <a >
+              <button id="delete-btn" data-postid={{post.id}} data-page="profile">Delete</button>
+            </a>
+          </div>
         </div>
-      </a>
     {% endfor %} 
    </section>
  </div>
