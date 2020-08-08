@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from .models import * 
-from .forms import ProfileForm, PostForm
+from .forms import *
 
 # Create your views here.
 def home(request):
@@ -70,7 +70,8 @@ def signup(request):
             return render(request, 'profile.html', context)
         return redirect('signup')
     else:
-        form = UserCreationForm()
+        # form = UserCreationForm()
+        form = SignUpForm()
         context = {
             'hidden': "",
             'form': form,
