@@ -66,7 +66,10 @@ def signup(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             print('Form is valid')
-            user = form.save()
+            print(form.cleaned_data.get('email'))
+            user = form.save(commit=False)
+            user.email = form.cleaned_data.get('email')
+            user.save()
             city = City.objects.all().first()
             profile = Profile(user=user, city=city, display_name=user.username)
             profile.save()
@@ -97,6 +100,7 @@ def signup(request):
             # end auto emailing setup section
             return render(request, 'profile.html', context)
         print('Form is NOT valid')
+        print(form.errors)
         return redirect('signup')
     else:
         print('signup else BLOCK')
