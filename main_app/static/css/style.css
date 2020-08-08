@@ -23,8 +23,9 @@ body {
     max-height: 40vh;
 }
 .carousel-item img {
-    object-fit: contain !important;
-    object-position: 50% 50% !important;
+    object-fit: fill !important;
+    object-position: 50% 100% !important;
+    margin-top: -175px;
 }
 
 .site-title {
@@ -413,6 +414,9 @@ h6 {
 }
 
 @media only screen and (max-width: 600px) {
+    .carousel-item img {
+        margin-top: 0px;
+    }
     .cities,
     .posts {
         width: 100%;
