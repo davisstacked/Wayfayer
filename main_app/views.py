@@ -286,3 +286,10 @@ def deletepost(request, city_id, post_id):
     print("in deletepost block")
     post.delete()
     return redirect('show_city', city_id=city_id)
+
+@login_required
+def profile_deletepost(request, post_id):
+    post = Post.objects.get(id=post_id)
+    print("in deletepost block")
+    post.delete()
+    return redirect('profile')
