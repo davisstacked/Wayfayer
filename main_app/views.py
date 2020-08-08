@@ -1,8 +1,17 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
+
+from django.contrib.auth.models import User
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage
+
+from .tokens import account_activation_token
 from .models import * 
 from .forms import *
 
@@ -50,9 +59,13 @@ def login_page(request):
         return render(request, 'home.html', context)
 
 def signup(request):
+    print('signup block')
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        print('in POST block')
+        # form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
+            print('Form is valid')
             user = form.save()
             city = City.objects.all().first()
             profile = Profile(user=user, city=city, display_name=user.username)
@@ -67,9 +80,26 @@ def signup(request):
                 'profile': profile,
                 'hidden': "hidden"
             }
+            # setting up auto emailing
+            current_site = get_current_site(request)
+            mail_subject = 'Welcome to Wayfayer'
+            message = render_to_string('welcome_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                # 'uid':urlsafe_base64_encode(force_bytes(user.pk)),
+                # 'token':account_activation_token.make_token(user),
+            })
+            to_email = form.cleaned_data.get('email')
+            email = EmailMessage(
+                        mail_subject, message, to=[to_email]
+            )
+            email.send()
+            # end auto emailing setup section
             return render(request, 'profile.html', context)
+        print('Form is NOT valid')
         return redirect('signup')
     else:
+        print('signup else BLOCK')
         # form = UserCreationForm()
         form = SignUpForm()
         context = {
@@ -81,28 +111,20 @@ def signup(request):
 
 @login_required
 def profile(request):
-    # if request.method == "POST":
-    #     profile = Profile.objects.get(user=request.user)
-    #     form = ImageForm(request.POST, request.FILES, instance=profile)
-    #     if form.is_valid():
-    #         print(request.FILES)
-    #         form.save()
-    #         return redirect('profile')
-    # else:
-        cities = City.objects.all()
-        user = User.objects.get(id=request.user.id)
-        posts = Post.objects.filter(user=request.user.id).select_related('city')
-        profile = Profile.objects.get(user=request.user)
-        chosen_city = profile.city
-        context = {
-            'cities': cities,
-            'chosen_city': chosen_city,
-            'user': user,
-            'posts': posts,
-            'profile': profile,
-            'hidden': "hidden"
-        }
-        return render(request, 'profile.html', context)
+    cities = City.objects.all()
+    user = User.objects.get(id=request.user.id)
+    posts = Post.objects.filter(user=request.user.id).select_related('city')
+    profile = Profile.objects.get(user=request.user)
+    chosen_city = profile.city
+    context = {
+        'cities': cities,
+        'chosen_city': chosen_city,
+        'user': user,
+        'posts': posts,
+        'profile': profile,
+        'hidden': "hidden"
+    }
+    return render(request, 'profile.html', context)
 
 @login_required
 def edit_profile(request):

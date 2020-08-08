@@ -432,8 +432,10 @@ h6 {
     }
     .posttext {
         width: 100%;
+        padding-right: 5px; /* Aded this */
         margin-bottom: 60px;
     } 
+    
     .ed-del-buttons {
         right: none;
         bottom: 0;

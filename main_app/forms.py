@@ -17,7 +17,7 @@ class PostForm(forms.ModelForm):
         fields = ['title', 'blurb', 'city']
 
 class SignUpForm(UserCreationForm):
-    email = forms.EmailField(max_length=150, help_text='Email')
+    email = forms.EmailField(max_length=150, help_text='Required')
     class Mata:
         model = User
-        fields = ['username', 'password', 'email']
+        fields = ['username', 'email', 'password']
