@@ -12,6 +12,7 @@ deleteBtns.forEach(btn => btn.addEventListener('click', e => {
     showForm.hidden = true;
     cityid = btn.dataset.cityid
     postid = btn.dataset.postid
+    pageid = btn.data.set.pageid
     dialogueContainer.classList.remove('hidden')
     deleteModal.hidden = false;
 }))
