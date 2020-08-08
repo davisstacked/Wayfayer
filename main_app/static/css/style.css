@@ -1,0 +1,461 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+}
+
+.bg-light {
+    background-color: rgb(176, 126, 176) !important;
+}
+
+.helptext {
+    height: 0 ;
+    width: 0;
+    display: none;
+}
+
+/* Home page styling */
+.carousel-inner {
+    width: 100vw;
+    min-height: 280px;
+    max-height: 40vh;
+}
+.carousel-item img {
+    object-fit: fill !important;
+    object-position: 50% 100% !important;
+    margin-top: -175px;
+}
+
+.site-title {
+    width: 100vw;
+    background: rgb(240, 194, 240);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Dialogue box styling */
+.dialogueContainer {
+    position: absolute;
+    height: calc(100vh - 56px);
+    width: 100vw;
+    background: rgba(0,0,0,0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    pointer-events: auto;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.dialogueBox {
+    min-height: 200px;
+    min-width: 200px;
+    max-width: 500px;
+    padding: 20px;
+    background: white;
+    z-index: 101;
+    border: solid grey 2px;
+    border-radius: 20px;
+    position: relative;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+.close-box {
+    cursor: pointer;
+}
+.close-box:hover {
+    color: red;
+}
+.fa-times-circle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+form button {
+    float: right;
+}
+
+.form-content {
+    margin: 40px 10px;
+    padding: 10px;
+}
+
+.post-show {
+    min-width: 300px;
+    padding: 10px;
+    margin: 15px 0;
+}
+
+.post-show h2 {
+    margin: 0;
+    text-align: center;
+}
+
+.post-show h3 {
+    color: grey;
+    font-size: 1.2em;
+    text-align: center;
+    margin: 0;
+    margin-top: 3px;
+}
+.post-show h5 {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.description {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.description h2 {
+    margin-top: 25px;
+}
+
+.topics {
+    display: flex;
+    width: 80%;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.topic {
+    width: 200px;
+    margin: 10px;
+}
+
+.profile-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100vw;
+}
+
+.profile {
+    height: 150px;
+    width: 100vw;
+    background-color: rgb(240, 194, 240);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px;
+    margin-bottom: -10px;
+}
+
+.image-display {
+    width: 90px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.image-display form label {
+    display: none;
+}
+.profile-img {
+    height: 120px;
+    width: 120px;
+    margin: 10px;
+}
+
+
+h6 {
+    margin: 0;
+    padding: 0;
+    font-size: 9px;
+}
+
+.citybox img {
+    height: 90%;
+}
+
+.cities,
+.posts {
+    margin-top: 20px;
+    padding: 10px;
+    border: 2px solid black;
+    height: 550px;
+    overflow: scroll;
+}
+
+.cities {
+    background-color: #5a1f4f;
+    width: 30%;
+    min-width: 330px;
+    margin-left: 10px;
+}
+
+.cities a {
+    text-decoration: none;
+    color: seashell;
+}
+.cities-click {
+    cursor: pointer;
+    transition: 150ms;
+}
+.cities-click:hover {
+    text-decoration: underline;
+    color: plum;
+}
+.citybox {
+    width: 95%;
+    height: 100px;
+    background-color: seashell;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid black;
+    margin: 15px 0;
+    cursor: pointer;
+    transition: 150ms;
+}
+.citybox a,
+.posts a,
+.topic a {
+    text-decoration: none;
+    color: black;
+}
+
+.topic h3 {
+    color: #5a1f4f;
+}
+
+.citybox:hover h2,
+.postbox:hover,
+.topic:hover h3 {
+    color: #5a1f4f;
+    text-decoration: underline;
+}
+
+.add-post:hover {
+    color: #5a1f4f;
+}
+
+.posttext {
+    width: 100%;
+    padding-right: 90px;
+}
+
+
+.citybox h2,
+.posttext {
+    transition: 150ms;
+    margin-left: 10px;
+}
+.posts {
+    width: 65%;
+    margin-right: 10px;
+}
+
+.city-header {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.chosen-cities {
+    z-index: 41;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.25);
+    color: white;
+    width: 99%;
+    height: 50px;
+}
+
+.chosen-cities h2 {
+    margin: 0px 10px;
+}
+
+.city-header img {
+    width: 99%;
+    margin-right: 50px;
+    height: 200px;
+    object-fit: cover;
+    object-position: 50% 100%;
+    position: absolute;
+    z-index: 40;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+}
+.post-header i {
+    font-size: 3em !important;
+    margin-right: 50px;
+    margin-bottom: 10px;
+}
+
+.postbox {
+    min-height: 150px;
+    width: 99%;
+    background-color: seashell;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid grey;
+    margin: 10px 0px;
+    position: relative;
+    overflow: hidden;
+}
+.postbox img {
+    height: 120px;
+    width: 120px;
+    object-fit: cover;
+}
+
+/* Edit / Delete Button */
+.ed-del-buttons {
+    position: absolute;
+    right: 0;
+    height: 100%;
+}
+#ed-btn,
+#delete-btn {
+    border: none;
+    height: 50%;
+    width: 80px;
+    display: block;
+    border-left: 2px solid gray;
+    font-size: 20px;
+}
+#ed-btn:hover,
+#delete-btn:hover {
+    text-decoration: underline;
+}
+#ed-btn {
+    background: #fff0f5;
+}
+#delete-btn {
+    background: #e6e6fa;
+    border-top: 2px solid gray;
+}
+
+/* delete modal */
+.delete-modal{
+    width: 90%;
+    height: 150px;
+    margin: 10px;
+    margin-top: 60px;
+    position: relative;
+}
+.btn-actions {
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+}
+
+.bios {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100vw;
+}
+
+.bio {
+    width: 250px;
+    height: 545px;
+    border: 5px solid black;
+    position: relative;
+}
+
+.bio img {
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
+}
+
+.bio h3, 
+.bio p {
+    margin: 5px;
+}
+
+.bio h3,
+.about-title {
+    text-align: center;
+}
+
+.links {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 10px;
+}
+
+.links a {
+    margin: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .carousel-item img {
+        margin-top: 0px;
+    }
+    .cities,
+    .posts {
+        width: 100%;
+    }
+    .image-display {
+        width: 100%;
+        height: 120px;
+        display: flex;
+        justify-content: center;
+    }
+    .profile {
+        flex-wrap: wrap;
+        height: 250px;
+    }
+    .postbox img {
+        margin-bottom: 60px;
+    }
+    .posttext {
+        width: 100%;
+        margin-bottom: 60px;
+    } 
+    .ed-del-buttons {
+        right: none;
+        bottom: 0;
+        display: flex;
+        height: 50px;
+        width: 100%;
+        border-top: 2px solid gray;
+    }
+    .ed-del-buttons a {
+        width: 50%;
+    }
+    #ed-btn,
+    #delete-btn {
+        height: 50px;
+        width: 100%;
+        border: none;
+    }
+    #delete-btn {
+        border-left: 2px solid gray;
+    }
+}

@@ -1,0 +1,262 @@
+[
+    {
+        "model": "main_app.city",
+        "pk": 1,
+        "name": "San Francisco",
+        "country": "USA",
+        "image": "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80"
+    },
+    {
+        "model": "main_app.city",
+        "pk": 2,
+        "name": "London",
+        "country": "UK",
+        "image": "https://images.unsplash.com/photo-1505761671935-60b3a7427bad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+    },
+    {
+        "model": "main_app.city",
+        "pk": 3,
+        "name": "Denver",
+        "country": "USA",
+        "image": "https://images.unsplash.com/photo-1519424187720-db6d0fc5a5d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
+    },
+    {
+        "model": "main_app.city",
+        "pk": 4,
+        "name": "New York City",
+        "country": "USA",
+        "image": "https://images.unsplash.com/photo-1496588152823-86ff7695e68f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
+    },
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "username": "leah",
+            "password": 87654321,
+            "is_superuser": true
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "username": "seb",
+            "password": 87654321,
+            "is_superuser": true
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields": {
+            "username": "tony",
+            "password": 87654321,
+            "is_superuser": true
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 4,
+        "fields": {
+            "username": "zach",
+            "password": 87654321,
+            "is_superuser": true
+        }
+    },
+    {
+        "model": "main_app.profile",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "city": 1,
+            "display_name": "Leah Davis"
+        }
+    },
+    {
+        "model": "main_app.profile",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "city": 2,
+            "display_name": "Sebastian Lee"
+        }
+    },
+    {
+        "model": "main_app.profile",
+        "pk": 3,
+        "fields": {
+            "user": 3,
+            "city": 3,
+            "display_name": "Tony Yu"
+        }
+    },
+    {
+        "model": "main_app.profile",
+        "pk": 4,
+        "fields": {
+            "user": 4,
+            "city": 4,
+            "display_name": "Zach Milan"
+        }
+    },
+    {
+        "model": "main_app.post",
+        "pk": 1,
+        "fields": {
+            "city": 1,
+            "user": 1,
+            "title": "Love this city!",
+            "blurb": "Day one inside San Francisco, and I'm loving it so much! From the seals, to Ghiradelli, to the Castro, I feel like I've already visited another world!"
+        }
+    },
+    {
+        "model": "main_app.post",
+        "pk": 2,
+        "fields": {
+            "city": 1,
+            "user": 2,
+            "title": "SF is the best!",
+            "blurb": "I just LOVE San Francisco!"
+        }
+    },
+    {
+        "model": "main_app.post",
+        "pk": 3,
+        "fields": {
+            "city": 1,
+            "user": 3,
+            "title": "Gimme more gimme gimme more",
+            "blurb": "I've visited SF a dozen times, and I foresee many trips in the future!"
+        }
+    },
+    {
+        "model": "main_app.post",
+        "pk": 4,
+        "fields": {
+            "city": 1,
+            "user": 4,
+            "title": "I heart San Fran",
+            "blurb": "Visit the chocolate factory on the esplanade! So delish."
+        }
+    },
+    {
+        "model": "main_app.post",
+        "pk": 5,
+        "fields": {
+            "city": 2,
+            "user": 1,
+            "title": "Love this city!",
+            "blurb": "Day one inside London, and I'm loving it so much! From the Picadilly Circus, to SoHo, to the Covered Market, I feel like I've already visited another world!"
+        }
+    },
+    {
+        "model": "main_app.post",
+        "pk": 6,
+        "fields": {
+            "city": 2,
+            "user": 2,
+            "title": "London is the best!",
+            "blurb": "I just LOVE London!"
+        }
+    },
+    {
+        "model": "main_app.post",
+        "pk": 7,
+        "fields": {
+            "city": 2,
+            "user": 3,
+            "title": "Gimme more gimme gimme more",
+            "blurb": "I've visited London a dozen times, and I foresee many trips in the future!"
+        }
+    },
+    {
+        "model": "main_app.post",
+        "pk": 8,
+        "fields": {
+            "city": 2,
+            "user": 4,
+            "title": "I heart London",
+            "blurb": "Visit the chocolate shop at Covent Gardens! So delish."
+        }
+    },
+    {
+        "model": "main_app.post",
+        "pk": 9,
+        "fields": {
+            "city": 3,
+            "user": 1,
+            "title": "Love this city!",
+            "blurb": "Day one inside Denver, and I'm loving it so much! From the Union Station, to Wash Park, to the zoo, I feel like I've already visited another world!"
+        }
+    },
+    {
+        "model": "main_app.post",
+        "pk": 10,
+        "fields": {
+            "city": 3,
+            "user": 2,
+            "title": "Denver is the best!",
+            "blurb": "I just LOVE Denver!"
+        }
+    },
+    {
+        "model": "main_app.post",
+        "pk": 11,
+        "fields": {
+            "city": 3,
+            "user": 3,
+            "title": "Gimme more gimme gimme more",
+            "blurb": "I've visited Denver a dozen times, and I foresee many trips in the future!"
+        }
+    },
+    {
+        "model": "main_app.post",
+        "pk": 12,
+        "fields": {
+            "city": 3,
+            "user": 4,
+            "title": "I heart Denver",
+            "blurb": "Visit the chocolate shop on Colfax! So delish."
+        }
+    },
+    {
+        "model": "main_app.post",
+        "pk": 13,
+        "fields": {
+            "city": 4,
+            "user": 1,
+            "title": "Love this city!",
+            "blurb": "Day one inside NYC, and I'm loving it so much! From the Union Station, to Bryant Park, to the Central Park, I feel like I've already visited another world!"
+        }
+    },
+    {
+        "model": "main_app.post",
+        "pk": 14,
+        "fields": {
+            "city": 4,
+            "user": 2,
+            "title": "NYC is the best!",
+            "blurb": "I just LOVE New York!"
+        }
+    },
+    {
+        "model": "main_app.post",
+        "pk": 15,
+        "fields": {
+            "city": 4,
+            "user": 3,
+            "title": "Gimme more gimme gimme more",
+            "blurb": "I've visited NYC a dozen times, and I foresee many trips in the future!"
+        }
+    },
+    {
+        "model": "main_app.post",
+        "pk": 16,
+        "fields": {
+            "city": 4,
+            "user": 4,
+            "title": "I heart NYC",
+            "blurb": "Visit Max Brenner's! So delish."
+        }
+    }
+]
