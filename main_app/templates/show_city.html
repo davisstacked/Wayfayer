@@ -78,7 +78,11 @@ City View
       {% endif %}
     </div>
     {% for post in posts %}
-    <div class="postbox">
+      {% if user.is_authenticated and post.user == user %}
+        <div class="postbox user-btn-rm">
+      {% else %}
+        <div class="postbox">
+      {% endif %}
       <img src="{{ post.user.profile.image.url }}" alt="post name"> 
       <a href="{% url 'city_post' chosen_city.id post.id %}">
         <div class="posttext">
