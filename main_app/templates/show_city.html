@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block JS %}
-<script defer src="{% static 'js/show_city.js' %}"></script>
+<script defer src="{% static 'js/edit_delete_post.js' %}"></script>
 {% endblock %}
 
 {%block title%}
@@ -48,7 +48,7 @@ City View
 </div>
  <div class="profile-content">
    <section class="cities">
-    <h2>Cities</h2>
+    <a class="cities-click"><h2>Cities</h2></a>
     {% for city in cities %}
       {% if city.id is chosen_city.id %}
         <div class="citybox" style='background: plum'>
@@ -96,7 +96,7 @@ City View
             <button id="ed-btn">Edit</button>
           </a>
           <a >
-            <button id="delete-btn" data-cityid={{chosen_city.id}} data-postid={{post.id}}>Delete</button>
+            <button id="delete-btn" data-cityid="{{chosen_city.id}}" data-postid="{{post.id}}" data-page="">Delete</button>
           </a>
         </div>
       {% endif %}

@@ -179,7 +179,8 @@ def profile_post(request, post_id):
         'post': post,
         'profile': profile,
         'hidden': "",
-        # 'formType': post
+        'showform': "",
+        'formType': "post"
     }
     return render(request, 'profile.html', context)
 
@@ -198,21 +199,21 @@ def profile_editpost(request, post_id):
         'posts': posts,
         'post': post,
         'profile': profile,
-        'hidden': "",
-        # 'formType': post
     }
     if request.method == 'POST':
         form = PostForm(request.POST, instance=post)
         if form.is_valid:
             post = form.save(commit=False)
             post.user = request.user
-            # post.city = chosen_city
             post.save()
             context['hidden'] = "hidden"
             context['showform'] = "hidden"
     else:
         form = PostForm(instance=post)
         context['post_form'] = form
+        context['hidden'] = ""
+        context['showform'] = ""
+        context['formType'] = 'editpost'
     return render(request, 'profile.html', context)
 
 def show_city(request, city_id):
@@ -293,30 +294,27 @@ def editpost(request, city_id, post_id):
         if form.is_valid:
             post = form.save(commit=False)
             post.user = request.user
-            # post.city = chosen_city
             post.save()
             context['hidden'] = "hidden"
             context['showform'] = "hidden"
     else:
-        post_form = PostForm(instance=post)
+        form = PostForm(instance=post)
         context['post'] = post
-        context['post_form'] = post_form
+        context['post_form'] = form
         context['hidden'] = ""
         context['showform'] = ""
         context['formType'] = 'editpost'
+    print('********** editpost')
     return render(request, 'show_city.html', context)
 
 @login_required
 def deletepost(request, city_id, post_id):
     post = Post.objects.get(id=post_id)
-    # print(post.city_name)
-    print("in deletepost block")
     post.delete()
     return redirect('show_city', city_id=city_id)
 
 @login_required
 def profile_deletepost(request, post_id):
     post = Post.objects.get(id=post_id)
-    print("in deletepost block")
     post.delete()
     return redirect('profile')

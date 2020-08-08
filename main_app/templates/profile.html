@@ -1,13 +1,13 @@
 {%extends 'base.html'%}
 {% load static %}
 
-{%block title%}
-profile
-{%endblock%}
-
 {% block JS %}
-<script defer src="{% static 'js/profile.js' %}"></script>
+<script defer src="{% static 'js/edit_delete_post.js' %}"></script>
 {% endblock %}
+
+{%block title%}
+Profile
+{%endblock%}
 
 {%block main%}
 <div class="dialogueContainer {{ hidden }}">
@@ -21,7 +21,7 @@ profile
         <button type="submit">Submit</button>
       </form>
       {% endif %}
-      {% if post %}
+      {% if formType == "post" %}
         <div class="post-show">
           <h2>{{ post.title }}</h2>
           <h3>in {{ city.name }}</h3>
@@ -30,7 +30,7 @@ profile
           <h5>by {{ profile.display_name }} </h5>
         </div>
       {% endif %}
-      {% if post_form %}
+      {% if post_form and formType == 'editpost' %}
         <form action="{% url 'profile_editpost' post.id %}" method="POST">
           {% csrf_token %}
           {{ post_form.as_p}}
@@ -72,7 +72,7 @@ profile
    <section class="cities">
     <a class="cities-click"><h2>Cities</h2></a>
     {% for city in cities %}
-        <div class="profile-city citybox" data-city="{{ city.name }}">
+        <div class="profile-city citybox" data-city="{{ city.name }}" data-cityid="{{city.id}}">
            <img src="{{ city.image }}" alt="city name"> 
             <h2>{{ city.name }}</h2>
         </div>
@@ -94,7 +94,7 @@ profile
               <button id="ed-btn">Edit</button>
             </a>
             <a >
-              <button id="delete-btn" data-postid={{post.id}} data-page="profile">Delete</button>
+              <button id="delete-btn" data-cityid="{{post.city.id}}" data-postid="{{post.id}}" data-page="profile">Delete</button>
             </a>
           </div>
         </div>

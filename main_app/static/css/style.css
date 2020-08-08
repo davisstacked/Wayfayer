@@ -213,10 +213,11 @@ h6 {
 }
 
 .cities > h2 {
-    text-decoration: none;
     color: seashell;
 }
 .cities-click {
+    text-decoration: none;
+    color: seashell;
     cursor: pointer;
     transition: 150ms;
 }
