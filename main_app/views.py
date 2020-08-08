@@ -156,6 +156,38 @@ def profile_post(request, post_id):
     }
     return render(request, 'profile.html', context)
 
+@login_required
+def profile_editpost(request, post_id):
+    post = Post.objects.get(id=post_id)
+    cities = City.objects.all()
+    user = User.objects.get(id=request.user.id)
+    posts = Post.objects.filter(user=request.user.id)
+    city = City.objects.get(id=post.city.id)
+    profile = Profile.objects.get(user=request.user)
+    context = {
+        'cities': cities,
+        'city': city,
+        'user': user,
+        'posts': posts,
+        'post': post,
+        'profile': profile,
+        'hidden': "",
+        # 'formType': post
+    }
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid:
+            post = form.save(commit=False)
+            post.user = request.user
+            # post.city = chosen_city
+            post.save()
+            context['hidden'] = "hidden"
+            context['showform'] = "hidden"
+    else:
+        form = PostForm(instance=post)
+        context['post_form'] = form
+    return render(request, 'profile.html', context)
+
 def show_city(request, city_id):
     cities = City.objects.all().order_by('name')
     chosen_city = City.objects.get(id=city_id)

@@ -30,6 +30,13 @@ profile
           <h5>by {{ profile.display_name }} </h5>
         </div>
       {% endif %}
+      {% if post_form %}
+        <form action="{% url 'profile_editpost' post.id %}" method="POST">
+          {% csrf_token %}
+          {{ post_form.as_p}}
+          <button type="submit">Submit</button>
+        </form>
+      {% endif %}
     </div>
     <!-- delete modal -->
     <div class="delete-modal" hidden >
@@ -83,11 +90,11 @@ profile
             </div> 
           </a>
           <div class="ed-del-buttons">
-            <a href="{% url 'editpost' chosen_city.id post.id %}">
+            <a href="{% url 'profile_editpost' post.id %}">
               <button id="ed-btn">Edit</button>
             </a>
             <a >
-              <button id="delete-btn" data-cityid={{chosen_city.id}} data-postid={{post.id}} data-page="profile">Delete</button>
+              <button id="delete-btn" data-postid={{post.id}} data-page="profile">Delete</button>
             </a>
           </div>
         </div>
