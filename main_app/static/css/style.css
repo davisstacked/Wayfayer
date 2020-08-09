@@ -36,6 +36,13 @@ body {
     justify-content: center;
     align-items: center;
 }
+.site-title h2 {
+    font-size: 48px;
+    margin: 20px 0px;
+}
+.site-title h4 {
+    margin-bottom: 15px;
+}
 
 /* Dialogue box styling */
 .dialogueContainer {
@@ -199,16 +206,18 @@ h6 {
 
 .cities {
     background-color: #5a1f4f;
-    width: 30%;
-    min-width: 330px;
+    /* width: 30%; */
+    width: 330px;
+    flex-grow: 1;
     margin-left: 10px;
 }
 
-.cities a {
-    text-decoration: none;
+.cities > h2 {
     color: seashell;
 }
 .cities-click {
+    text-decoration: none;
+    color: seashell;
     cursor: pointer;
     transition: 150ms;
 }
@@ -253,7 +262,7 @@ h6 {
 
 .posttext {
     width: 100%;
-    padding-right: 90px;
+    padding-right: 10px;
 }
 
 
@@ -263,7 +272,9 @@ h6 {
     margin-left: 10px;
 }
 .posts {
-    width: 65%;
+    width: 200px;
+    flex-grow: 11;
+    margin-left: 10px;
     margin-right: 10px;
 }
 
@@ -331,6 +342,9 @@ h6 {
 }
 
 /* Edit / Delete Button */
+.user-btn-rm {
+    padding-right: 90px;
+}
 .ed-del-buttons {
     position: absolute;
     right: 0;
@@ -357,6 +371,7 @@ h6 {
     border-top: 2px solid gray;
 }
 
+
 /* delete modal */
 .delete-modal{
     width: 90%;
@@ -371,6 +386,12 @@ h6 {
     bottom: 10px;
 }
 
+/* About Page */
+.about-title {
+    font-size: 36px;
+    margin-top: 20px;
+}
+
 .bios {
     display: flex;
     justify-content: space-around;
@@ -383,6 +404,7 @@ h6 {
     height: 545px;
     border: 5px solid black;
     position: relative;
+    margin-top: 10px;
 }
 
 .bio img {
@@ -413,31 +435,11 @@ h6 {
     margin: 10px;
 }
 
-@media only screen and (max-width: 600px) {
-    .carousel-item img {
-        margin-top: 0px;
+@media only screen and (max-width: 900px) {
+    .user-btn-rm {
+        padding-right: 10px;
+        padding-bottom: 60px;
     }
-    .cities,
-    .posts {
-        width: 100%;
-    }
-    .image-display {
-        width: 100%;
-        height: 120px;
-        display: flex;
-        justify-content: center;
-    }
-    .profile {
-        flex-wrap: wrap;
-        height: 250px;
-    }
-    .postbox img {
-        margin-bottom: 60px;
-    }
-    .posttext {
-        width: 100%;
-        margin-bottom: 60px;
-    } 
     .ed-del-buttons {
         right: none;
         bottom: 0;
@@ -458,4 +460,24 @@ h6 {
     #delete-btn {
         border-left: 2px solid gray;
     }
+}
+
+@media only screen and (max-width: 600px) {
+    .carousel-item img {
+        margin-top: 0px;
+    }
+    .cities,
+    .posts {
+        width: 100%;
+    }
+    .image-display {
+        width: 100%;
+        height: 120px;
+        display: flex;
+        justify-content: center;
+    }
+    .profile {
+        flex-wrap: wrap;
+        height: 250px;
+    }    
 }

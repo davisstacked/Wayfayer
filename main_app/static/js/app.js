@@ -5,17 +5,18 @@ const dialogueContainer = document.querySelector('.dialogueContainer') || null
 const profileCity = document.querySelectorAll('.profile-city') || null
 const profilePost = document.querySelectorAll('.profile-post') || null
 const cities = document.querySelector('.cities-click') || null // profile and show-city pages
-const postHeader = document.querySelector('.profile-post-header') || null // profile and show-city pages
+const postHeaderCount = document.querySelector('.profile-post-header') || null // profile and show-city pages
+
 let count = 0;
 
-if (cities !== null && postHeader !== null ) {
+if (cities !== null && postHeaderCount !== null ) {
     count = 0;
     profilePost.forEach(post => {
         post.hidden = false;
         count++
     })
-
-    postHeader.innerText = `Posts (${count})`
+    postHeaderCount.innerText = `Posts (${count})`
+    
     cities.addEventListener('click', e => {
         profileCity.forEach(city => city.style.background = 'seashell')
         count = 0;
@@ -23,7 +24,7 @@ if (cities !== null && postHeader !== null ) {
             post.hidden = false;
             count++
         })
-        postHeader.innerText = `Posts (${count})`
+        postHeaderCount.innerText = `Posts (${count})`
     })
 }
 
@@ -41,7 +42,7 @@ if (profileCity !== null ) {
                 count++
             }
         })
-        postHeader.innerText = `Posts (${count})`
+        postHeaderCount.innerText = `Posts (${count})`
     })
     )
 }

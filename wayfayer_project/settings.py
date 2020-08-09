@@ -125,3 +125,16 @@ LOGOUT_REDIRECT_URL = '/'
 import os
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+#  email host server (from https://medium.com/@frfahim/django-registration-with-confirmation-email-bb5da011e4ef)
+# https://data-flair.training/blogs/django-send-email/
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'welcome.to.theproject5050@gmail.com'
+# EMAIL_HOST_PASSWORD = 'poiu-1w2e'
+EMAIL_HOST_USER = 'Wayfayer.welcome@gmail.com'
+EMAIL_HOST_PASSWORD = '1qazxcde3@'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
