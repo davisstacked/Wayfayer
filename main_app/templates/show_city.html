@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block JS %}
-<script defer src="{% static 'js/show_city.js' %}"></script>
+<script defer src="{% static 'js/edit_delete_post.js' %}"></script>
 {% endblock %}
 
 {%block title%}
@@ -78,7 +78,11 @@ City View
       {% endif %}
     </div>
     {% for post in posts %}
-    <div class="postbox">
+      {% if user.is_authenticated and post.user == user %}
+        <div class="postbox user-btn-rm">
+      {% else %}
+        <div class="postbox">
+      {% endif %}
       <img src="{{ post.user.profile.image.url }}" alt="post name"> 
       <a href="{% url 'city_post' chosen_city.id post.id %}">
         <div class="posttext">
@@ -92,7 +96,7 @@ City View
             <button id="ed-btn">Edit</button>
           </a>
           <a >
-            <button id="delete-btn" data-cityid={{chosen_city.id}} data-postid={{post.id}}>Delete</button>
+            <button id="delete-btn" data-cityid="{{chosen_city.id}}" data-postid="{{post.id}}" data-page="">Delete</button>
           </a>
         </div>
       {% endif %}
