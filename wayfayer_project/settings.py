@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
+import django_on_heroku
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -122,7 +124,6 @@ STATIC_URL = '/static/'
 LOGOUT_REDIRECT_URL = '/'
 
 # Media detail (from https://www.geeksforgeeks.org/python-uploading-images-in-django/)
-import os
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
@@ -140,3 +141,5 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+django_on_heroku.settings(locals())
