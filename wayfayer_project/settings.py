@@ -10,10 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-from pathlib import Path
-
 import os
 import django_on_heroku
+from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -125,8 +125,6 @@ STATIC_URL = '/static/'
 LOGOUT_REDIRECT_URL = '/'
 
 # Media detail (from https://www.geeksforgeeks.org/python-uploading-images-in-django/)
-
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
