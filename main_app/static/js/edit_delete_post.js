@@ -2,7 +2,6 @@ console.log("Show_city")
 
 const showForm = document.querySelector('.show-form');
 const deleteBtns = document.querySelectorAll('#delete-btn');
-const deleteModal = document.querySelector('.delete-modal');
 const deleteAction = document.getElementById('delete-action');
 const cancelAction = document.getElementById('cancel-action');
 

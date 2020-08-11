@@ -270,7 +270,7 @@ def newpost(request, city_id):
             # post.city = chosen_city
             post.save()
             context['hidden'] = "hidden"
-            # return redirect('show_city.html', context)
+            return redirect('show_city', city_id=city_id)
     else:
         post_form = PostForm({'city': chosen_city})
         context['post_form'] = post_form
@@ -297,6 +297,7 @@ def editpost(request, city_id, post_id):
             post.save()
             context['hidden'] = "hidden"
             context['showform'] = "hidden"
+            return redirect('show_city', city_id=city_id)
     else:
         form = PostForm(instance=post)
         context['post'] = post

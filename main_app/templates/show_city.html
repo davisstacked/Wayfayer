@@ -13,7 +13,7 @@ City View
 <div class="dialogueContainer {{ hidden }}">
   <div class="dialogueBox">
     <div class="show-form" {{ showform}}>
-    <span class="close-box"><i class="far fa-times-circle fa-3x"></i></span>
+    <span class="close-box"><i class="far fa-times-circle fa-2x"></i></span>
       <!-- the post/newpost/editpost forms -->
       {% if formType == "post" %}
         <div class="post-show">
@@ -38,6 +38,7 @@ City View
     </div>
     <!-- delete modal -->
     <div class="delete-modal" hidden >
+      <span class="close-box" data-modalshown="true" ><i class="far fa-times-circle fa-2x"></i></span>
       <h5>Are you sure you want to delete?</h5>
       <div class="btn-actions">
         <button id="delete-action">Delete</button>

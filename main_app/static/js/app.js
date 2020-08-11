@@ -1,7 +1,8 @@
 console.log("WayFAYer")
 
-const closeBox = document.querySelector('.close-box') || null;
+const closeBoxes = document.querySelectorAll('.close-box') || null;
 const dialogueContainer = document.querySelector('.dialogueContainer') || null
+const deleteModal = document.querySelector('.delete-modal') || null
 const profileCity = document.querySelectorAll('.profile-city') || null
 const profilePost = document.querySelectorAll('.profile-post') || null
 const cities = document.querySelector('.cities-click') || null // profile and show-city pages
@@ -47,10 +48,16 @@ if (profileCity !== null ) {
     )
 }
 
-if (closeBox !== null ) {
-    closeBox.addEventListener('click', e => {
-        dialogueContainer.classList.add('hidden')
-        window.history.back()
+if (closeBoxes !== null) {
+    closeBoxes.forEach(closeBox => {
+        closeBox.addEventListener('click', e => {
+            dialogueContainer.classList.add('hidden')
+            if (deleteModal !== null && closeBox.dataset.modalshown === "true") {
+                deleteModal.hidden = true
+            } else {
+                window.history.back()
+            }
+        })
     })
 }
 
