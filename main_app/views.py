@@ -44,7 +44,8 @@ def login_page(request):
                 'profile': profile,
                 'hidden': "hidden"
             }
-            return render(request, 'profile.html', context)
+            print('about to render profile')
+            return redirect('profile')
         print('form is valid? ' + str(form.is_valid()))    
         return redirect('login_page')
 
