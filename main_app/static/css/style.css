@@ -4,10 +4,27 @@
 
 body {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .bg-light {
     background-color: rgb(176, 126, 176) !important;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+    height: 30px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
+    width: 100vw;
+    background-color: rgb(176, 126, 176);
 }
 
 .helptext {
@@ -198,15 +215,15 @@ h6 {
 .cities,
 .posts {
     margin-top: 20px;
+    margin-bottom: 10px;
     padding: 10px;
     border: 2px solid black;
-    height: 550px;
+    height: calc(100vh - 116px);
     overflow: scroll;
 }
 
 .cities {
     background-color: #5a1f4f;
-    /* width: 30%; */
     width: 330px;
     flex-grow: 1;
     margin-left: 10px;
