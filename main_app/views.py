@@ -44,13 +44,10 @@ def login_page(request):
                 'profile': profile,
                 'hidden': "hidden"
             }
-            print('about to render profile')
-            return redirect('profile')
-        print('form is valid? ' + str(form.is_valid()))    
+            return redirect('profile')  
         return redirect('login_page')
 
     else:
-        print('Else block')
         form = AuthenticationForm()
         context = {
             'hidden': "",
@@ -60,14 +57,10 @@ def login_page(request):
         return render(request, 'home.html', context)
 
 def signup(request):
-    print('signup block')
     if request.method == 'POST':
-        print('in POST block')
         # form = UserCreationForm(request.POST)
         form = SignUpForm(request.POST)
         if form.is_valid():
-            print('Form is valid')
-            print(form.cleaned_data.get('email'))
             user = form.save(commit=False)
             user.email = form.cleaned_data.get('email')
             user.save()
@@ -100,11 +93,8 @@ def signup(request):
             email.send()
             # end auto emailing setup section
             return render(request, 'profile.html', context)
-        print('Form is NOT valid')
-        print(form.errors)
         return redirect('signup')
     else:
-        print('signup else BLOCK')
         # form = UserCreationForm()
         form = SignUpForm()
         context = {
@@ -306,7 +296,6 @@ def editpost(request, city_id, post_id):
         context['hidden'] = ""
         context['showform'] = ""
         context['formType'] = 'editpost'
-    print('********** editpost')
     return render(request, 'show_city.html', context)
 
 @login_required
